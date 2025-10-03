@@ -153,7 +153,7 @@ export default function Reviews() {
         {/* Google Link */}
         <div className="text-center">
           <a
-            href="https://www.google.com/maps/place/Teppichhaus+am+Dornbusch"
+            href="https://www.google.com/maps/place/Teppichhaus+am+Dornbusch/@50.1378935,8.6650353,17z/data=!3m1!4b1!4m6!3m5!1s0x47bd0931dd74cd71:0x8adb477aed6aa806!8m2!3d50.1378901!4d8.6676102!16s%2Fg%2F11cr_0wl21"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-red-700 hover:text-red-800 font-semibold"

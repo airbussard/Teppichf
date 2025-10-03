@@ -119,7 +119,7 @@ export default function Kontakt() {
               {/* Map */}
               <div className="rounded-xl overflow-hidden shadow-xl">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2555.0!2d8.65!3d50.14!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0ea7c3e3e1e5%3A0x1!2sAm%20Dornbusch%2024%2C%2060320%20Frankfurt%20am%20Main!5e0!3m2!1sde!2sde!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2555.4807644989843!2d8.665035315677!3d50.13789347942857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0931dd74cd71%3A0x8adb477aed6aa806!2sTeppichhaus%20am%20Dornbusch!5e0!3m2!1sde!2sde!4v1234567890123"
                   width="100%"
                   height="300"
                   style={{ border: 0 }}
