@@ -9,7 +9,11 @@
       "Bash(git init:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: NextJS website für Teppichgeschäft Frankfurt\n\n- Homepage mit Hero-Section und Services-Übersicht\n- Service-Seiten: Verkauf, Ankauf, Teppichwäsche, Reparatur\n- Vorher/Nachher-Slider für Teppichreparatur\n- Kontaktformular mit E-Mail-Integration\n- Google Maps Integration\n- DSGVO-konformes Cookie-Consent-Tool\n- Rechtliche Seiten: Impressum, Datenschutz, AGB\n- Caprover Deployment-Setup via GitHub Actions\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
