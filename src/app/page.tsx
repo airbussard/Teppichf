@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Reviews from '@/components/Reviews'
 
 export default function Home() {
   return (
@@ -143,6 +144,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Reviews Section */}
+      <Reviews />
 
       {/* CTA Section */}
       <section className="py-12 sm:py-16 lg:py-20 bg-red-700">
