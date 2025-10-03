@@ -38,6 +38,17 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
           <p>&copy; {new Date().getFullYear()} S. Koukpari Handelsgesellschaft mbH. Alle Rechte vorbehalten.</p>
+          <p className="mt-2 text-sm">
+            Website entwickelt von{' '}
+            <a
+              href="https://dev.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-red-400 hover:text-red-300 transition"
+            >
+              dev.tech
+            </a>
+          </p>
         </div>
       </div>
     </footer>

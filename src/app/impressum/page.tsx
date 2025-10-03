@@ -107,6 +107,17 @@ export default function Impressum() {
             Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei
             Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
           </p>
+
+          <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Webdesign & Entwicklung</h2>
+          <p className="mb-4">
+            Diese Website wurde entwickelt und konzipiert von:<br />
+            <a href="https://dev.tech" target="_blank" rel="noopener noreferrer" className="text-red-700 hover:text-red-800">
+              dev.tech
+            </a><br />
+            Webadresse: <a href="https://dev.tech" target="_blank" rel="noopener noreferrer" className="text-red-700 hover:text-red-800">
+              dev.tech
+            </a>
+          </p>
         </div>
       </div>
     </div>
