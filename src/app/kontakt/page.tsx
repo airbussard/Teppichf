@@ -51,24 +51,24 @@ export default function Kontakt() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-900 to-red-700 py-20">
+      <section className="bg-gradient-to-r from-red-900 to-red-700 py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-bold text-white mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Kontakt
           </h1>
-          <p className="text-xl text-white max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto">
             Nehmen Sie Kontakt mit uns auf – wir freuen uns auf Ihre Nachricht
           </p>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="py-20">
+      <section className="py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">
                 Besuchen Sie uns
               </h2>
 
@@ -132,7 +132,7 @@ export default function Kontakt() {
 
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">
                 Schreiben Sie uns
               </h2>
 

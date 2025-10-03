@@ -33,3 +33,27 @@ Technik: Caprover server läuft im hintergrund, deploy über github. System bitt
 https://github.com/airbussard/Teppichf
 
 immer committen und pushen.
+
+
+Bewertungen:
+
+Hans Joachim Ziegenhagen (Local Guide)
+Top Adresse. Haben einen neuen Teppich erworben, nach Besuch bei und Vergleich mit 3 anderen Anbietern. Tolle und kompetente Beratung, sehr schöne Teppiche. Man nimmt sich Zeit für den Kunden, ein Besuch lohnt sich.
+
+Wiebke Gorny
+Habe einen empfindlichen Teppich hier reinigen lassen. Er wurde abgeholt und gebracht. Sehr kompetente Beratung bei der Abholung. Ergebnis ist fantastisch!
+
+Andy "Paul Paule" Brauy (Local Guide)
+Habe ein Termin bei meiner verstorbenen Tante in der Wohnung gemacht zur Besichtigung von 5 Teppiche und habe danach eine super Beratung und ehrliche Einschätzung der Teppiche bekommen.
+
+Annemie Pauli-Binten
+Im Teppichhaus am Dornbusch habe ich einen gebrauchten Teppich zu einem fairen Preis erworben. Von Herrn Koukpari wurde ich fachlich bestens und freundlich beraten. Ich kann das Teppichhaus nur weiterempfehlen, alle meine Bedenken in Bezug auf den Kauf des gebrauchten Teppichs wurden ernst genommen, hilfsbereit und großzügig entgegenkommend behandelt. Ich bin sehr zufrieden mit diesem Teppichkauf.
+
+Oliver G.
+Sehr höfliche und unaufdringliche Beratung. Gekaufte Teppiche werden nach Hause geliefert. Sehr schöne Auswahl!
+
+S. Buth (4 Sterne gegeben)
+Nette und kompetente Mitarbeiter, nicht aufdringlich. Leider schwierige Parksituation
+
+Roland Klimas (Local Guide - BILD1) 
+Freundlich und Kompetent !

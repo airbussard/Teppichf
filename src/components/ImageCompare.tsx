@@ -60,7 +60,7 @@ export default function ImageCompare({
           className="object-cover"
           priority
         />
-        <div className="absolute bottom-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg font-semibold">
+        <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 bg-green-600 text-white px-2 sm:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-base font-semibold">
           {afterLabel}
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function ImageCompare({
           className="object-cover"
           priority
         />
-        <div className="absolute bottom-4 left-4 bg-red-600 text-white px-4 py-2 rounded-lg font-semibold">
+        <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 bg-red-600 text-white px-2 sm:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-base font-semibold">
           {beforeLabel}
         </div>
       </div>
@@ -87,8 +87,8 @@ export default function ImageCompare({
         className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize"
         style={{ left: `${sliderPosition}%` }}
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
-          <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
           </svg>
         </div>

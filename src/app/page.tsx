@@ -5,26 +5,26 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-[600px] bg-gradient-to-r from-red-900 to-red-700">
+      <section className="relative h-[500px] sm:h-[600px] lg:h-[700px] bg-gradient-to-r from-red-900 to-red-700">
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div className="text-white max-w-2xl">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
               Ihr Spezialist für Orientteppiche in Frankfurt
             </h1>
-            <p className="text-xl md:text-2xl mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8">
               Verkauf, Ankauf, Reinigung und professionelle Reparatur von Perserteppichen
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
                 href="/verkauf"
-                className="bg-white text-red-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+                className="bg-white text-red-700 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition text-center"
               >
                 Teppiche ansehen
               </Link>
               <Link
                 href="/kontakt"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-700 transition"
+                className="border-2 border-white text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-700 transition text-center"
               >
                 Kontakt aufnehmen
               </Link>
@@ -108,34 +108,34 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div className="order-2 md:order-1">
               <Image
                 src="/img/Geschaeftvonaussen.jpeg"
                 alt="Teppichgeschäft Frankfurt"
                 width={600}
                 height={400}
-                className="rounded-xl shadow-xl"
+                className="rounded-xl shadow-xl w-full"
               />
             </div>
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <div className="order-1 md:order-2">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
                 Über uns
               </h2>
-              <p className="text-lg text-gray-600 mb-4">
+              <p className="text-base sm:text-lg text-gray-600 mb-4">
                 Seit vielen Jahren sind wir Ihr zuverlässiger Partner für hochwertige Orientteppiche
                 und Perserteppiche in Frankfurt am Main. Unser Fachgeschäft am Dornbusch bietet Ihnen
                 eine große Auswahl an handgeknüpften Teppichen aus verschiedenen Regionen.
               </p>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-base sm:text-lg text-gray-600 mb-6">
                 Ob Verkauf, Ankauf, professionelle Reinigung oder fachgerechte Reparatur –
                 wir stehen Ihnen mit unserer langjährigen Erfahrung zur Seite.
               </p>
               <Link
                 href="/kontakt"
-                className="inline-block bg-red-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-800 transition"
+                className="inline-block bg-red-700 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-red-800 transition"
               >
                 Besuchen Sie uns
               </Link>
@@ -145,17 +145,17 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-red-700">
+      <section className="py-12 sm:py-16 lg:py-20 bg-red-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
             Interessiert an unseren Teppichen?
           </h2>
-          <p className="text-xl text-white mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8">
             Besuchen Sie uns in unserem Geschäft oder kontaktieren Sie uns für eine persönliche Beratung.
           </p>
           <Link
             href="/kontakt"
-            className="inline-block bg-white text-red-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+            className="inline-block bg-white text-red-700 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
           >
             Jetzt Kontakt aufnehmen
           </Link>
