@@ -11,10 +11,20 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-red-700">
-                Teppich Frankfurt
-              </span>
+            <Link href="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-red-700 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h10v2H7v-2z"/>
+                </svg>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-red-700 leading-none">
+                  Teppichhaus
+                </span>
+                <span className="text-sm text-gray-600 leading-none">
+                  am Dornbusch
+                </span>
+              </div>
             </Link>
           </div>
 

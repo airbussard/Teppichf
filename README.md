@@ -1,6 +1,6 @@
-# Teppich Frankfurt Website
+# Teppichhaus am Dornbusch Website
 
-NextJS Website für das Teppichgeschäft in Frankfurt am Main.
+NextJS Website für das Teppichhaus am Dornbusch in Frankfurt am Main.
 
 ## Features
 

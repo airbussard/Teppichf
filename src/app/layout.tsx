@@ -8,8 +8,8 @@ import CookieConsent from '@/components/CookieConsent'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Teppich Frankfurt - Orientteppiche, Perserteppiche, Ankauf & Reparatur',
-  description: 'Ihr Spezialist für Orientteppiche und Perserteppiche in Frankfurt am Main. Verkauf, Ankauf, Teppichwäsche und professionelle Reparaturen.',
+  title: 'Teppichhaus am Dornbusch - Orientteppiche, Perserteppiche, Ankauf & Reparatur',
+  description: 'Teppichhaus am Dornbusch - Ihr Spezialist für Orientteppiche und Perserteppiche in Frankfurt am Main. Verkauf, Ankauf, Teppichwäsche und professionelle Reparaturen.',
 }
 
 export default function RootLayout({
