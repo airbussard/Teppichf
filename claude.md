@@ -42,22 +42,33 @@ teppichf/
 │   │   ├── page.tsx           # Homepage
 │   │   ├── globals.css        # Globale Styles + Animationen
 │   │   ├── verkauf/page.tsx   # Service-Seite: Verkauf
-│   │   ├── ankauf/page.tsx    # Service-Seite: Ankauf
+│   │   ├── ankauf/page.tsx    # Service-Seite: Ankauf mit Bild-Upload
 │   │   ├── waesche/page.tsx   # Service-Seite: Teppichwäsche
 │   │   ├── reparatur/page.tsx # Service-Seite: Reparatur
+│   │   ├── angebote/          # Produktkatalog (NEU)
+│   │   │   ├── page.tsx       # Übersicht: Filter, Suche, Grid
+│   │   │   └── [id]/page.tsx  # Detailseite mit Anfrageformular
 │   │   ├── kontakt/page.tsx   # Kontaktformular + Google Maps
 │   │   ├── impressum/page.tsx # Impressum
 │   │   ├── datenschutz/page.tsx # Datenschutzerklärung
 │   │   ├── agb/page.tsx       # AGB
 │   │   └── api/
-│   │       └── contact/route.ts # API Route für E-Mail-Versand
-│   └── components/            # Wiederverwendbare Komponenten
-│       ├── Navigation.tsx     # Header mit Logo + Navigation
-│       ├── Footer.tsx         # Footer mit Links + Credits
-│       ├── HeroSlider.tsx     # Auto-rotating Image Slider
-│       ├── ImageCompare.tsx   # Before/After Slider (Reparatur)
-│       ├── Reviews.tsx        # Google Bewertungen + Lightbox
-│       └── CookieConsent.tsx  # DSGVO Cookie Banner
+│   │       ├── contact/route.ts      # Kontaktformular E-Mail
+│   │       ├── ankauf/route.ts       # Ankauf-Anfrage mit Bildern
+│   │       └── anfrage-teppich/route.ts # Produktanfrage E-Mail
+│   ├── components/            # Wiederverwendbare Komponenten
+│   │   ├── Navigation.tsx     # Header mit Logo + Navigation
+│   │   ├── Footer.tsx         # Footer mit Links + Credits
+│   │   ├── HeroSlider.tsx     # Auto-rotating Image Slider
+│   │   ├── ImageCompare.tsx   # Before/After Slider (Reparatur)
+│   │   ├── Reviews.tsx        # Google Bewertungen + Lightbox
+│   │   └── CookieConsent.tsx  # DSGVO Cookie Banner
+│   ├── data/                  # JSON-Datenquellen (NEU)
+│   │   └── teppiche.json      # 15 Beispiel-Teppiche
+│   ├── lib/                   # Business Logic & Data Layer (NEU)
+│   │   └── teppiche.ts        # CRUD-Funktionen, Filter, Suche
+│   └── types/                 # TypeScript Interfaces (NEU)
+│       └── teppich.ts         # Teppich Interface
 ├── next.config.js             # Next.js Konfiguration
 ├── tailwind.config.ts         # Tailwind CSS Konfiguration
 ├── tsconfig.json              # TypeScript Konfiguration
@@ -106,8 +117,10 @@ const nextConfig = {
 | Route | Datei | Beschreibung |
 |-------|-------|--------------|
 | `/` | `app/page.tsx` | Homepage mit Hero Slider, Services, Über Uns, Reviews |
+| `/angebote` | `app/angebote/page.tsx` | Produktkatalog mit Filter, Suche & Sortierung |
+| `/angebote/[id]` | `app/angebote/[id]/page.tsx` | Produkt-Detailseite mit Anfrageformular |
 | `/verkauf` | `app/verkauf/page.tsx` | Teppichverkauf-Seite mit Galerie |
-| `/ankauf` | `app/ankauf/page.tsx` | Teppichankauf-Service |
+| `/ankauf` | `app/ankauf/page.tsx` | Teppichankauf mit Bild-Upload (Drag & Drop) |
 | `/waesche` | `app/waesche/page.tsx` | Teppichwäsche mit kostenlosem Hol-/Bringservice |
 | `/reparatur` | `app/reparatur/page.tsx` | Reparatur mit Before/After Slider |
 | `/kontakt` | `app/kontakt/page.tsx` | Kontaktformular + Google Maps |
@@ -124,7 +137,9 @@ const nextConfig = {
 
 | Route | Datei | Methode | Beschreibung |
 |-------|-------|---------|--------------|
-| `/api/contact` | `app/api/contact/route.ts` | POST | Sendet Kontaktformular-Daten per E-Mail |
+| `/api/contact` | `app/api/contact/route.ts` | POST | Kontaktformular → persian-carpets@gmx.de |
+| `/api/ankauf` | `app/api/ankauf/route.ts` | POST | Ankauf-Anfrage mit Bildern → info@knmail.de |
+| `/api/anfrage-teppich` | `app/api/anfrage-teppich/route.ts` | POST | Produktanfrage mit Teppich-ID → persian-carpets@gmx.de |
 
 ---
 
@@ -292,6 +307,682 @@ useEffect(() => {
     setShowBanner(false)
   }
 }, [])
+```
+
+---
+
+## Angebote - Produktkatalog-System
+
+### Übersicht
+
+Das Angebote-System ist ein vollständiger Produktkatalog für Teppiche mit Filter-, Such- und Sortier-Funktionen. Es ist aktuell mit JSON-Daten implementiert, aber für eine spätere Migration zu einer Datenbank (Supabase, Vercel Postgres) vorbereitet.
+
+**Features:**
+- ✅ 15 Beispiel-Teppiche in JSON-Format
+- ✅ TypeScript Type Safety
+- ✅ Data Layer Abstraction (leichte DB-Migration)
+- ✅ Filter: Herkunft, Material, Preisspanne
+- ✅ Live-Suche über Name, Region, Beschreibung
+- ✅ Sortierung: Name, Preis auf-/absteigend
+- ✅ Responsive Product Grid (1-3 Spalten)
+- ✅ Detailseiten mit Bildergalerie
+- ✅ Anfrageformular mit Auto-Fill der Teppich-ID
+- ✅ E-Mail-Versand an persian-carpets@gmx.de
+
+---
+
+### TypeScript Interface (`src/types/teppich.ts`)
+
+**Datei-Zweck:** Zentrale Typ-Definition für Teppich-Produkte
+
+```typescript
+export interface Teppich {
+  id: string              // Eindeutige ID (z.B. "persischer-tabriz-1")
+  name: string            // Produktname (z.B. "Persischer Tabriz")
+  herkunft: string        // Land (z.B. "Iran", "Afghanistan", "Türkei")
+  region?: string         // Optional: Spezifische Region (z.B. "Tabriz", "Isfahan")
+  groesse: string         // Größe (z.B. "200 x 300 cm")
+  alter: string           // Alter (z.B. "ca. 50 Jahre")
+  zustand: string         // Zustand (z.B. "Sehr gut", "Gut")
+  material: string        // Material (z.B. "Wolle auf Baumwolle", "Seide")
+  knuepfung: string       // Knüpfungsart (z.B. "Handgeknüpft")
+  preis: number           // Preis in Euro (z.B. 3500)
+  bilder: string[]        // Array von Bildpfaden (z.B. ["/img/store/teppich.jpg"])
+  beschreibung: string    // Ausführliche Beschreibung
+  besonderheiten?: string // Optional: Besondere Merkmale
+  verfuegbar: boolean     // Verfügbarkeitsstatus
+}
+```
+
+**Verwendung:**
+```typescript
+import { Teppich } from '@/types/teppich'
+
+const teppich: Teppich = {
+  id: 'persischer-nain-1',
+  name: 'Persischer Nain',
+  herkunft: 'Iran',
+  region: 'Nain',
+  // ...
+}
+```
+
+---
+
+### JSON-Datenquelle (`src/data/teppiche.json`)
+
+**Datei-Zweck:** Aktuelle Produktdatenbank (15 Beispiel-Teppiche)
+
+**Struktur:**
+```json
+[
+  {
+    "id": "persischer-tabriz-1",
+    "name": "Persischer Tabriz",
+    "herkunft": "Iran",
+    "region": "Tabriz",
+    "groesse": "200 x 300 cm",
+    "alter": "ca. 50 Jahre",
+    "zustand": "Sehr gut",
+    "material": "Wolle auf Baumwolle",
+    "knuepfung": "Handgeknüpft",
+    "preis": 3500,
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
+    "beschreibung": "Ein wunderschöner persischer Tabriz-Teppich...",
+    "besonderheiten": "Außergewöhnlich feine Knüpfung mit ca. 400.000 Knoten/m²",
+    "verfuegbar": true
+  }
+  // ... 14 weitere Teppiche
+]
+```
+
+**Beispiel-Teppiche:**
+1. **Persischer Tabriz** (Iran) - €3.500
+2. **Kaukasischer Kasak** (Kaukasus) - €1.800
+3. **Persischer Isfahan** (Iran, mit Seide) - €8.500
+4. **Afghanischer Belutsch** (Afghanistan) - €650
+5. **Persischer Nain** (Iran, 9LA) - €4.200
+6. **Turkmenischer Buchara** (Turkmenistan) - €2.100
+7. **Persischer Ghom** (Iran, reine Seide) - €6.800
+8. **Persischer Bidjar** (Iran, "Eisenteppich") - €3.900
+9. **Kaukasischer Shirvan** (Kaukasus, antik) - €1.500
+10. **Persischer Kashan** (Iran) - €3.200
+11. **Persischer Hamadan** (Iran, Läufer) - €980
+12. **Afghanischer Gabbeh** (Afghanistan) - €1.200
+13. **Persischer Mashad** (Iran, 300x400cm) - €5.800
+14. **Türkischer Hereke** (Türkei, Seide) - €4.500
+15. **Persischer Yazd** (Iran) - €1.650
+
+**Preisspanne:** €650 - €8.500
+**Durchschnitt:** ca. €3.200
+
+---
+
+### Data Layer (`src/lib/teppiche.ts`)
+
+**Datei-Zweck:** Abstraktion der Datenbank-Logik für einfache Migration
+
+**Vorteile:**
+- ✅ UI-Code bleibt unverändert bei DB-Wechsel
+- ✅ Zentrale Stelle für CRUD-Operationen
+- ✅ Kommentare mit DB-Implementierungs-Beispielen
+
+**Hauptfunktionen:**
+
+#### 1. `getAllTeppiche(): Promise<Teppich[]>`
+Gibt alle Teppiche zurück
+
+**Aktuell (JSON):**
+```typescript
+export async function getAllTeppiche(): Promise<Teppich[]> {
+  return teppicheData as Teppich[]
+}
+```
+
+**Zukünftig (Supabase):**
+```typescript
+// const { data } = await supabase.from('teppiche').select('*').eq('verfuegbar', true)
+// return data as Teppich[]
+```
+
+#### 2. `getTeppichById(id: string): Promise<Teppich | null>`
+Sucht Teppich anhand der ID
+
+```typescript
+export async function getTeppichById(id: string): Promise<Teppich | null> {
+  const teppiche = teppicheData as Teppich[]
+  return teppiche.find(t => t.id === id) || null
+}
+```
+
+#### 3. `filterTeppiche(filters: FilterOptions): Promise<Teppich[]>`
+Filtert Teppiche nach mehreren Kriterien
+
+**FilterOptions Interface:**
+```typescript
+export interface FilterOptions {
+  herkunft?: string[]     // z.B. ["Iran", "Afghanistan"]
+  minPreis?: number        // z.B. 1000
+  maxPreis?: number        // z.B. 5000
+  material?: string[]      // z.B. ["Seide", "Wolle"]
+  region?: string[]        // z.B. ["Tabriz", "Isfahan"]
+}
+```
+
+**Implementierung:**
+```typescript
+export async function filterTeppiche(filters: FilterOptions): Promise<Teppich[]> {
+  let teppiche = await getVerfuegbareTeppiche()
+
+  if (filters.herkunft && filters.herkunft.length > 0) {
+    teppiche = teppiche.filter(t => filters.herkunft!.includes(t.herkunft))
+  }
+
+  if (filters.minPreis !== undefined) {
+    teppiche = teppiche.filter(t => t.preis >= filters.minPreis!)
+  }
+
+  if (filters.maxPreis !== undefined) {
+    teppiche = teppiche.filter(t => t.preis <= filters.maxPreis!)
+  }
+
+  // ... weitere Filter
+
+  return teppiche
+}
+```
+
+#### 4. `searchTeppiche(query: string): Promise<Teppich[]>`
+Volltextsuche über Name, Herkunft, Region, Beschreibung, Material
+
+```typescript
+export async function searchTeppiche(query: string): Promise<Teppich[]> {
+  const teppiche = await getVerfuegbareTeppiche()
+  const lowerQuery = query.toLowerCase()
+
+  return teppiche.filter(t =>
+    t.name.toLowerCase().includes(lowerQuery) ||
+    t.herkunft.toLowerCase().includes(lowerQuery) ||
+    (t.region && t.region.toLowerCase().includes(lowerQuery)) ||
+    t.beschreibung.toLowerCase().includes(lowerQuery) ||
+    t.material.toLowerCase().includes(lowerQuery)
+  )
+}
+```
+
+#### 5. Helper-Funktionen
+
+**`getUniqueHerkuenfte(teppiche: Teppich[]): string[]`**
+- Extrahiert alle einzigartigen Herkunftsländer
+- Für Filter-Dropdown
+
+**`getUniqueMaterialien(teppiche: Teppich[]): string[]`**
+- Extrahiert Materialien (Seide, Wolle, Baumwolle)
+- Intelligent: Erkennt Material in Strings wie "Wolle auf Baumwolle"
+
+**`getPreisRange(teppiche: Teppich[]): { min: number; max: number }`**
+- Berechnet Min/Max Preis für Slider
+
+---
+
+### Übersichtsseite (`/angebote`)
+
+**Datei:** `src/app/angebote/page.tsx`
+**Typ:** Client Component (`'use client'`)
+
+**Layout:**
+```
+┌─────────────────────────────────────────┐
+│         Hero: "Unsere Angebote"         │
+└─────────────────────────────────────────┘
+┌──────────┬──────────────────────────────┐
+│          │  [Sortieren: Preis ▼]        │
+│ FILTER   │  15 Teppiche gefunden        │
+│ SIDEBAR  ├──────────────────────────────┤
+│          │  ┌────┐ ┌────┐ ┌────┐       │
+│ ◉ Suche  │  │ T1 │ │ T2 │ │ T3 │       │
+│          │  │€3k │ │€2k │ │€5k │       │
+│ ◉ Her-   │  └────┘ └────┘ └────┘       │
+│   kunft  │  ┌────┐ ┌────┐ ┌────┐       │
+│ □ Iran   │  │ T4 │ │ T5 │ │ T6 │       │
+│ □ ...    │  └────┘ └────┘ └────┘       │
+│          │                              │
+│ ◉ Mate-  │  [Pagination / Infinite]    │
+│   rial   │                              │
+│          │                              │
+│ ◉ Preis  │                              │
+│ [Slider] │                              │
+│          │                              │
+│ [Reset]  │                              │
+└──────────┴──────────────────────────────┘
+```
+
+**State Management:**
+```typescript
+const [allTeppiche, setAllTeppiche] = useState<Teppich[]>([])
+const [filteredTeppiche, setFilteredTeppiche] = useState<Teppich[]>([])
+const [searchQuery, setSearchQuery] = useState('')
+const [sortBy, setSortBy] = useState<'preis-asc' | 'preis-desc' | 'name'>('name')
+const [filters, setFilters] = useState({
+  herkunft: [] as string[],
+  material: [] as string[],
+  minPreis: 0,
+  maxPreis: 10000,
+})
+```
+
+**Filter-Logik (useEffect):**
+```typescript
+useEffect(() => {
+  let result = [...allTeppiche]
+
+  // 1. Suche
+  if (searchQuery) {
+    result = result.filter(t =>
+      t.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      // ...
+    )
+  }
+
+  // 2. Herkunft-Filter
+  if (filters.herkunft.length > 0) {
+    result = result.filter(t => filters.herkunft.includes(t.herkunft))
+  }
+
+  // 3. Material-Filter
+  if (filters.material.length > 0) {
+    result = result.filter(t =>
+      filters.material.some(m => t.material.toLowerCase().includes(m.toLowerCase()))
+    )
+  }
+
+  // 4. Preis-Filter
+  result = result.filter(t => t.preis >= filters.minPreis && t.preis <= filters.maxPreis)
+
+  // 5. Sortierung
+  switch (sortBy) {
+    case 'preis-asc':
+      result.sort((a, b) => a.preis - b.preis)
+      break
+    case 'preis-desc':
+      result.sort((a, b) => b.preis - a.preis)
+      break
+    case 'name':
+      result.sort((a, b) => a.name.localeCompare(b.name))
+      break
+  }
+
+  setFilteredTeppiche(result)
+}, [allTeppiche, searchQuery, filters, sortBy])
+```
+
+**Product Card:**
+```tsx
+<Link href={`/angebote/${teppich.id}`} className="group">
+  <div className="relative h-64">
+    <Image src={teppich.bilder[0]} alt={teppich.name} fill />
+  </div>
+  <div className="p-6">
+    <h3>{teppich.name}</h3>
+    <p>Herkunft: {teppich.herkunft} ({teppich.region})</p>
+    <p>Größe: {teppich.groesse}</p>
+    <p>Alter: {teppich.alter}</p>
+    <span className="text-2xl font-bold text-red-700">
+      €{teppich.preis.toLocaleString('de-DE')}
+    </span>
+  </div>
+</Link>
+```
+
+**Responsive Grid:**
+```tsx
+<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+  {filteredTeppiche.map(teppich => (
+    <ProductCard key={teppich.id} teppich={teppich} />
+  ))}
+</div>
+```
+
+---
+
+### Detailseite (`/angebote/[id]`)
+
+**Datei:** `src/app/angebote/[id]/page.tsx`
+**Typ:** Client Component (`'use client'`)
+
+**Layout:**
+```
+┌────────────────────────────────────────────┐
+│ Breadcrumb: Angebote › Persischer Tabriz  │
+└────────────────────────────────────────────┘
+┌──────────────┬─────────────────────────────┐
+│              │  Persischer Tabriz          │
+│   [IMAGE]    │  €3.500                     │
+│  Gallery     │                             │
+│  500x500px   │  ┌──────────────────────┐   │
+│              │  │ Produktdetails       │   │
+│ [Thumb][Th]  │  │ Herkunft: Iran       │   │
+│              │  │ Größe: 200x300cm     │   │
+│              │  │ Alter: ca. 50 Jahre  │   │
+│              │  │ ...                  │   │
+│              │  └──────────────────────┘   │
+│              │                             │
+│              │  Beschreibung...            │
+│              │                             │
+│              │  [☎ Jetzt anrufen]         │
+│              │  oder Formular unten ▼      │
+└──────────────┴─────────────────────────────┘
+┌────────────────────────────────────────────┐
+│       Anfrage zu diesem Teppich            │
+│  ┌──────────────────────────────────────┐  │
+│  │ Name: [____________]                 │  │
+│  │ E-Mail: [__________]                 │  │
+│  │ Telefon: [_________]                 │  │
+│  │ Nachricht:                           │  │
+│  │ ┌────────────────────────────────┐   │  │
+│  │ │ Ich interessiere mich für den  │   │  │
+│  │ │ Teppich "Persischer Tabriz"    │   │  │
+│  │ │ (persischer-tabriz-1).         │   │  │  ← AUTO-FILLED!
+│  │ └────────────────────────────────┘   │  │
+│  │                                      │  │
+│  │ [Anfrage senden]                     │  │
+│  └──────────────────────────────────────┘  │
+└────────────────────────────────────────────┘
+```
+
+**Auto-Fill Teppich-ID im Formular:**
+
+**WICHTIG:** Die Teppich-ID wird automatisch in die Nachricht eingefügt!
+
+```typescript
+const [teppich, setTeppich] = useState<Teppich | null>(null)
+const [formData, setFormData] = useState({
+  name: '',
+  email: '',
+  phone: '',
+  message: '',
+})
+
+useEffect(() => {
+  async function loadTeppich() {
+    const data = await getTeppichById(id)
+    setTeppich(data)
+
+    if (data) {
+      // AUTO-FILL: Teppich-ID in Nachricht
+      setFormData(prev => ({
+        ...prev,
+        message: `Ich interessiere mich für den Teppich "${data.name}" (${data.id}).`
+      }))
+    }
+  }
+
+  loadTeppich()
+}, [id])
+```
+
+**Formular-Submit:**
+```typescript
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+
+  const response = await fetch('/api/anfrage-teppich', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ...formData,
+      teppichId: teppich?.id,        // Metadata
+      teppichName: teppich?.name,    // Metadata
+    }),
+  })
+
+  // ... Status-Handling
+}
+```
+
+**Bildergalerie:**
+```typescript
+const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+// Hauptbild
+<div className="relative h-96">
+  <Image
+    src={teppich.bilder[currentImageIndex]}
+    alt={`${teppich.name} - Bild ${currentImageIndex + 1}`}
+    fill
+  />
+</div>
+
+// Thumbnails
+{teppich.bilder.length > 1 && (
+  <div className="grid grid-cols-4 gap-2">
+    {teppich.bilder.map((bild, index) => (
+      <button
+        key={index}
+        onClick={() => setCurrentImageIndex(index)}
+        className={currentImageIndex === index ? 'border-red-700' : 'border-gray-200'}
+      >
+        <Image src={bild} alt={`Vorschau ${index + 1}`} fill />
+      </button>
+    ))}
+  </div>
+)}
+```
+
+---
+
+### API Route (`/api/anfrage-teppich`)
+
+**Datei:** `src/app/api/anfrage-teppich/route.ts`
+**Methode:** POST
+**Zweck:** Sendet Produktanfragen an persian-carpets@gmx.de
+
+**Request Body:**
+```typescript
+{
+  name: string
+  email: string
+  phone?: string
+  message: string
+  teppichId: string        // z.B. "persischer-tabriz-1"
+  teppichName: string      // z.B. "Persischer Tabriz"
+}
+```
+
+**E-Mail-Template:**
+```html
+<div style="font-family: Arial, sans-serif;">
+  <h2 style="color: #b91c1c;">Teppich-Anfrage von ${name}</h2>
+
+  <!-- Hervorgehobene Teppich-Info -->
+  <div style="background-color: #fef2f2; border-left: 4px solid #b91c1c; padding: 16px;">
+    <h3>Angefragter Teppich:</h3>
+    <p style="font-size: 16px; font-weight: bold;">${teppichName}</p>
+    <p style="font-size: 14px; color: #6b7280;">ID: ${teppichId}</p>
+  </div>
+
+  <!-- Kontaktdaten -->
+  <div style="background-color: #f3f4f6; padding: 20px;">
+    <h3>Kontaktdaten:</h3>
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>E-Mail:</strong> <a href="mailto:${email}">${email}</a></p>
+    ${phone ? `<p><strong>Telefon:</strong> ${phone}</p>` : ''}
+  </div>
+
+  <!-- Nachricht -->
+  <div>
+    <h3>Nachricht:</h3>
+    <p style="white-space: pre-wrap;">${message}</p>
+  </div>
+
+  <hr />
+  <p style="color: #6b7280; font-size: 14px;">
+    Diese Anfrage wurde über das Angebots-Formular auf teppich-frankfurt.de gesendet.
+  </p>
+</div>
+```
+
+**Implementierung:**
+```typescript
+export async function POST(request: NextRequest) {
+  try {
+    const { name, email, phone, message, teppichId, teppichName } = await request.json()
+
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: 'Bitte füllen Sie alle Pflichtfelder aus.' },
+        { status: 400 }
+      )
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || 'smtp.gmail.com',
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: false,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    })
+
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: 'persian-carpets@gmx.de',
+      subject: `Teppich-Anfrage: ${teppichName || 'Allgemeine Anfrage'}`,
+      html: mailTemplate,  // Siehe oben
+    })
+
+    return NextResponse.json({ message: 'Anfrage erfolgreich gesendet!' }, { status: 200 })
+  } catch (error) {
+    console.error('Error sending teppich inquiry:', error)
+    return NextResponse.json(
+      { error: 'Fehler beim Senden der Anfrage.' },
+      { status: 500 }
+    )
+  }
+}
+```
+
+---
+
+### Database Migration Strategy
+
+**Aktueller Stand:** JSON-Dateien (`src/data/teppiche.json`)
+
+**Migration-Pfad:** JSON → Supabase / Vercel Postgres
+
+**Vorbereitung:**
+- ✅ Data Layer Abstraction (`src/lib/teppiche.ts`)
+- ✅ TypeScript Interface (`src/types/teppich.ts`)
+- ✅ Alle UI-Komponenten nutzen Data Layer (nicht direkt JSON)
+
+**Migration-Schritte (Supabase):**
+
+1. **Supabase Projekt erstellen**
+   ```bash
+   npx supabase init
+   npx supabase login
+   ```
+
+2. **Datenbank-Schema**
+   ```sql
+   CREATE TABLE teppiche (
+     id TEXT PRIMARY KEY,
+     name TEXT NOT NULL,
+     herkunft TEXT NOT NULL,
+     region TEXT,
+     groesse TEXT NOT NULL,
+     alter TEXT NOT NULL,
+     zustand TEXT NOT NULL,
+     material TEXT NOT NULL,
+     knuepfung TEXT NOT NULL,
+     preis INTEGER NOT NULL,
+     bilder TEXT[] NOT NULL,
+     beschreibung TEXT NOT NULL,
+     besonderheiten TEXT,
+     verfuegbar BOOLEAN DEFAULT true,
+     created_at TIMESTAMPTZ DEFAULT NOW()
+   );
+
+   CREATE INDEX idx_teppiche_herkunft ON teppiche(herkunft);
+   CREATE INDEX idx_teppiche_preis ON teppiche(preis);
+   CREATE INDEX idx_teppiche_verfuegbar ON teppiche(verfuegbar);
+   ```
+
+3. **JSON-Daten importieren**
+   ```typescript
+   import { createClient } from '@supabase/supabase-js'
+   import teppicheData from './src/data/teppiche.json'
+
+   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+
+   for (const teppich of teppicheData) {
+     await supabase.from('teppiche').insert(teppich)
+   }
+   ```
+
+4. **Data Layer aktualisieren**
+   ```typescript
+   // src/lib/teppiche.ts - NUR DIESE DATEI ÄNDERN!
+
+   import { createClient } from '@supabase/supabase-js'
+
+   const supabase = createClient(
+     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+   )
+
+   export async function getAllTeppiche(): Promise<Teppich[]> {
+     // JSON (alt):
+     // return teppicheData as Teppich[]
+
+     // Supabase (neu):
+     const { data, error } = await supabase
+       .from('teppiche')
+       .select('*')
+       .eq('verfuegbar', true)
+
+     if (error) throw error
+     return data as Teppich[]
+   }
+
+   export async function getTeppichById(id: string): Promise<Teppich | null> {
+     // JSON (alt):
+     // return teppicheData.find(t => t.id === id) || null
+
+     // Supabase (neu):
+     const { data, error } = await supabase
+       .from('teppiche')
+       .select('*')
+       .eq('id', id)
+       .single()
+
+     if (error) return null
+     return data as Teppich
+   }
+   ```
+
+5. **Environment Variables**
+   ```bash
+   # .env.local
+   NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGci...
+   ```
+
+**Migration-Vorteile:**
+- ✅ UI-Code bleibt **komplett unverändert**
+- ✅ Nur `src/lib/teppiche.ts` anpassen
+- ✅ TypeScript Interface bleibt gleich
+- ✅ Keine Breaking Changes
+
+**Alternative: Vercel Postgres**
+```typescript
+import { sql } from '@vercel/postgres'
+
+export async function getAllTeppiche(): Promise<Teppich[]> {
+  const { rows } = await sql`SELECT * FROM teppiche WHERE verfuegbar = true`
+  return rows as Teppich[]
+}
 ```
 
 ---
@@ -1067,7 +1758,7 @@ npm run build
 
 ## Credits
 
-**Entwickelt von:** [dev.tech](https://dev.tech)
+**Entwickelt von:** [emergence.tech](https://emergence.tech) ❤️
 **Framework:** Next.js 15
 **Styling:** Tailwind CSS v4
 **Deployment:** Caprover
@@ -1076,9 +1767,49 @@ npm run build
 
 ## Version History
 
+### v1.1.0 (2025-10-04)
+
+**Neue Features:**
+- ✅ **Angebote-Produktkatalog** - Vollständige Shop-Funktionalität
+  - 15 Beispiel-Teppiche in JSON-Format
+  - TypeScript Type Safety (`src/types/teppich.ts`)
+  - Data Layer Abstraction für DB-Migration (`src/lib/teppiche.ts`)
+  - Übersichtsseite (`/angebote`) mit Filter, Suche & Sortierung
+  - Produkt-Detailseiten (`/angebote/[id]`) mit Bildergalerie
+  - **Auto-Fill Teppich-ID** in Anfrageformular
+  - Responsive Product Grid (1-3 Spalten)
+  - Filter: Herkunft, Material, Preisspanne (€650-€8.500)
+  - Live-Suche über Name, Region, Beschreibung, Material
+  - Sortierung: Name, Preis auf-/absteigend
+- ✅ **Ankauf-Seite erweitert** - Drag & Drop Image Upload
+  - Bis zu 5 Bilder hochladen (JPG/PNG, max 5MB)
+  - Base64-Encoding für E-Mail-Versand
+  - Vorschau mit Remove-Buttons
+- ✅ **Neue API Routes**
+  - `/api/ankauf` - Ankauf-Anfrage mit Bildern → info@knmail.de
+  - `/api/anfrage-teppich` - Produktanfrage → persian-carpets@gmx.de
+- ✅ **Navigation erweitert** - "Angebote" Link in Desktop & Mobile Menu
+- ✅ **Database-Ready Architecture** - Vorbereitung für Supabase/Postgres
+
+**Verbesserungen:**
+- 🎨 Einheitliches Platzhalter-Bild für alle Produkte
+- 📧 E-Mail-Templates mit Teppich-ID Hervorhebung
+- 🔗 Developer Credits aktualisiert (dev.tech → emergence.tech)
+- 📱 Teppichwäsche: Kostenloser Hol-/Bringservice betont
+- 🗺️ Kontaktseite: Karte in Full-Width über Footer
+- 🖼️ Kontaktseite: Außenansicht-Foto statt Inline-Karte
+- 📝 Kontaktformular: Ziel-E-Mail → persian-carpets@gmx.de
+
+**Optimierungen:**
+- 🚀 Bild-Komprimierung: 28 MB → 6 MB (-79%)
+- 🏗️ Standalone Build für schnellere Deployments
+- 📐 Favicon mit Logo-Icon
+
+---
+
 ### v1.0.0 (2025-10-04)
 
-**Features:**
+**Initial Release:**
 - ✅ Homepage mit Hero Slider
 - ✅ 4 Service-Seiten (Verkauf, Ankauf, Wäsche, Reparatur)
 - ✅ Before/After Image Slider (Reparatur)

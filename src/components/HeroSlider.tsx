@@ -79,7 +79,7 @@ export default function HeroSlider() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-delay-2">
                 <Link
-                  href="/verkauf"
+                  href="/angebote"
                   className="bg-white text-red-700 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition text-center"
                 >
                   Teppiche ansehen
