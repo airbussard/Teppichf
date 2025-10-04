@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function Kontakt() {
   const [formData, setFormData] = useState({
@@ -116,17 +117,18 @@ export default function Kontakt() {
                 </div>
               </div>
 
-              {/* Map */}
+              {/* Geschäftsaußenansicht */}
               <div className="rounded-xl overflow-hidden shadow-xl">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2555.4807644989843!2d8.665035315677!3d50.13789347942857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0931dd74cd71%3A0x8adb477aed6aa806!2sTeppichhaus%20am%20Dornbusch!5e0!3m2!1sde!2sde!4v1234567890123"
-                  width="100%"
-                  height="300"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+                <Image
+                  src="/img/Geschaeftvonaussen.jpeg"
+                  alt="Teppichhaus am Dornbusch - Außenansicht"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                />
+                <p className="text-sm text-gray-500 text-center mt-2">
+                  So finden Sie uns: Am Dornbusch 24, Frankfurt
+                </p>
               </div>
             </div>
 
@@ -226,6 +228,28 @@ export default function Kontakt() {
               </form>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Full Width Map Section */}
+      <section className="w-full">
+        <div className="bg-gray-50 py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 text-center">
+              So finden Sie uns
+            </h2>
+          </div>
+        </div>
+        <div className="w-full">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2555.4807644989843!2d8.665035315677!3d50.13789347942857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0931dd74cd71%3A0x8adb477aed6aa806!2sTeppichhaus%20am%20Dornbusch!5e0!3m2!1sde!2sde!4v1234567890123"
+            width="100%"
+            height="500"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </section>
     </div>
