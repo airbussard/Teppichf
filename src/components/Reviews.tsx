@@ -5,8 +5,8 @@ interface Review {
   text: string
   rating: number
   badge?: string
-  image?: string
-  initials?: string
+  initials: string
+  visitPhoto?: string
 }
 
 const reviews: Review[] = [
@@ -53,8 +53,8 @@ const reviews: Review[] = [
     text: 'Freundlich und Kompetent !',
     rating: 5,
     badge: 'Local Guide',
-    image: '/img/BILD1.jpeg',
-    initials: 'RK'
+    initials: 'RK',
+    visitPhoto: '/img/BILD1.jpeg'
   }
 ]
 
@@ -107,23 +107,11 @@ export default function Reviews() {
               <div className="flex items-center gap-4 mb-4">
                 {/* Avatar */}
                 <div className="flex-shrink-0">
-                  {review.image ? (
-                    <div className="w-12 h-12 rounded-full overflow-hidden">
-                      <Image
-                        src={review.image}
-                        alt={review.name}
-                        width={48}
-                        height={48}
-                        className="object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-12 h-12 bg-red-700 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">
-                        {review.initials}
-                      </span>
-                    </div>
-                  )}
+                  <div className="w-12 h-12 bg-red-700 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">
+                      {review.initials}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Name and Badge */}
@@ -146,6 +134,31 @@ export default function Reviews() {
               <p className="text-gray-700 mt-4 text-sm leading-relaxed">
                 {review.text}
               </p>
+
+              {/* Visit Photo */}
+              {review.visitPhoto && (
+                <div className="mt-4">
+                  <a
+                    href={review.visitPhoto}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block relative h-48 rounded-lg overflow-hidden hover:opacity-90 transition cursor-pointer group"
+                  >
+                    <Image
+                      src={review.visitPhoto}
+                      alt={`Besuch von ${review.name}`}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition flex items-center justify-center">
+                      <svg className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </div>
+                  </a>
+                  <p className="text-xs text-gray-500 mt-2 text-center">Foto vom Besuch - Klicken zum Vergrößern</p>
+                </div>
+              )}
             </div>
           ))}
         </div>
