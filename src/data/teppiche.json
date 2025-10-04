@@ -26,7 +26,7 @@
     "material": "Wolle auf Wolle",
     "knuepfung": "Handgeknüpft",
     "preis": 1800,
-    "bilder": ["/img/store/teppich2innen_gut.jpg"],
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
     "beschreibung": "Authentischer Kasak-Teppich mit geometrischen Mustern und kräftigen Farben. Die robuste Wolle garantiert Langlebigkeit.",
     "verfuegbar": true
   },
@@ -41,7 +41,7 @@
     "material": "Seide und Wolle auf Seide",
     "knuepfung": "Handgeknüpft",
     "preis": 8500,
-    "bilder": ["/img/store/teppich3innen_schoen.jpg"],
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
     "beschreibung": "Ein exquisiter Isfahan-Teppich mit Seiden-Anteil. Das filigrane Blumenmuster und die außergewöhnliche Qualität machen diesen Teppich zu einem wahren Kunstwerk.",
     "besonderheiten": "Teilweise mit Naturseide geknüpft, sehr hohe Knotendichte",
     "verfuegbar": true
@@ -72,7 +72,7 @@
     "material": "Wolle mit Seide auf Baumwolle",
     "knuepfung": "Handgeknüpft",
     "preis": 4200,
-    "bilder": ["/img/store/teppich2innen_gut.jpg"],
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
     "beschreibung": "Ein eleganter Nain-Teppich mit hellblauer Grundfarbe und floralen Mustern. Die Kombination aus Wolle und Seide verleiht dem Teppich einen besonderen Glanz.",
     "besonderheiten": "9LA Qualität (sehr feine Knüpfung)",
     "verfuegbar": true
@@ -88,7 +88,7 @@
     "material": "Wolle auf Wolle",
     "knuepfung": "Handgeknüpft",
     "preis": 2100,
-    "bilder": ["/img/store/teppich3innen_schoen.jpg"],
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
     "beschreibung": "Klassischer Buchara mit den typischen Gül-Motiven in warmen Rottönen. Ein zeitloser Klassiker für jeden Einrichtungsstil.",
     "verfuegbar": true
   },
@@ -119,7 +119,7 @@
     "material": "Wolle auf Baumwolle",
     "knuepfung": "Handgeknüpft",
     "preis": 3900,
-    "bilder": ["/img/store/teppich2innen_gut.jpg"],
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
     "beschreibung": "Robuster Bidjar-Teppich, bekannt als 'Eisenteppich' wegen seiner außergewöhnlichen Strapazierfähigkeit. Mit klassischem Herati-Muster.",
     "besonderheiten": "Sehr dichte und feste Knüpfung, extrem langlebig",
     "verfuegbar": true
@@ -135,7 +135,7 @@
     "material": "Wolle auf Wolle",
     "knuepfung": "Handgeknüpft",
     "preis": 1500,
-    "bilder": ["/img/store/teppich3innen_schoen.jpg"],
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
     "beschreibung": "Antiker Shirvan-Teppich mit geometrischen Mustern und leuchtenden Farben. Ein seltenes Sammlerstück in ausgezeichnetem Zustand.",
     "besonderheiten": "Naturgefärbt mit Pflanzenfarben",
     "verfuegbar": true
@@ -166,7 +166,7 @@
     "material": "Wolle auf Baumwolle",
     "knuepfung": "Handgeknüpft",
     "preis": 980,
-    "bilder": ["/img/store/teppich2innen_gut.jpg"],
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
     "beschreibung": "Traditioneller Hamadan-Läufer mit geometrischen Mustern. Perfekt für Flure und Durchgangsbereiche.",
     "verfuegbar": true
   },
@@ -181,7 +181,7 @@
     "material": "Wolle auf Wolle",
     "knuepfung": "Handgeknüpft",
     "preis": 1200,
-    "bilder": ["/img/store/teppich3innen_schoen.jpg"],
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
     "beschreibung": "Moderner Gabbeh-Teppich mit minimalistischem Design und natürlichen Farben. Die dicke Wolle sorgt für höchsten Komfort.",
     "besonderheiten": "Hoher Flor, sehr weich",
     "verfuegbar": true
@@ -213,7 +213,7 @@
     "material": "Seide auf Seide",
     "knuepfung": "Handgeknüpft",
     "preis": 4500,
-    "bilder": ["/img/store/teppich2innen_gut.jpg"],
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
     "beschreibung": "Exklusiver Hereke-Seidenteppich mit außergewöhnlich feiner Knüpfung. Ein wahres Meisterwerk türkischer Knüpfkunst.",
     "besonderheiten": "100% Seide, extrem hohe Knotendichte, Sammlerstück",
     "verfuegbar": true
@@ -229,7 +229,7 @@
     "material": "Wolle auf Baumwolle",
     "knuepfung": "Handgeknüpft",
     "preis": 1650,
-    "bilder": ["/img/store/teppich3innen_schoen.jpg"],
+    "bilder": ["/img/store/teppichinnen_schoen.jpg"],
     "beschreibung": "Klassischer Yazd-Teppich mit traditionellem Toranj-Muster. Die Farbkombination aus Beige und Blau ist zeitlos elegant.",
     "verfuegbar": true
   }
