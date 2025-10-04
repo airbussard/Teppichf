@@ -11,7 +11,7 @@ export default function Waesche() {
             Teppichwäsche
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto">
-            Professionelle und schonende Reinigung für Ihre wertvollen Orientteppiche
+            Professionelle und schonende Reinigung mit kostenlosem Hol- und Bringservice
           </p>
         </div>
       </section>
@@ -43,6 +43,11 @@ export default function Waesche() {
                 Wir verwenden spezielle Reinigungsmethoden und Produkte, die für handgeknüpfte
                 Teppiche geeignet sind. Dabei achten wir besonders auf den Erhalt der Farben
                 und der Faserstruktur.
+              </p>
+              <p className="text-lg text-gray-600 mb-4">
+                <strong>Kostenloser Hol- und Bringservice:</strong> Für Ihren Komfort holen wir
+                Ihren Teppich bei Ihnen zu Hause ab und bringen ihn nach der professionellen
+                Reinigung wieder zurück – komplett kostenfrei.
               </p>
             </div>
           </div>
@@ -163,8 +168,8 @@ export default function Waesche() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <div>
-                <h3 className="text-xl font-bold mb-2">Hol- und Bringservice</h3>
-                <p className="text-gray-600">Auf Wunsch holen wir Ihren Teppich ab und liefern ihn zurück</p>
+                <h3 className="text-xl font-bold mb-2">Kostenloser Hol- und Bringservice</h3>
+                <p className="text-gray-600">Wir holen Ihren Teppich kostenlos ab und liefern ihn gereinigt zurück</p>
               </div>
             </div>
           </div>
