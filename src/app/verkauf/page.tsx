@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Verkauf() {
   return (
@@ -101,6 +102,39 @@ export default function Verkauf() {
               </div>
               <h3 className="text-xl font-bold mb-2">Persönliche Beratung</h3>
               <p className="text-gray-600">Wir beraten Sie kompetent und individuell</p>
+            </div>
+          </div>
+
+          {/* Gallery Section */}
+          <div className="mt-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+              Einblicke in unsere Auswahl
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="relative h-64 rounded-xl overflow-hidden shadow-lg group">
+                <Image
+                  src="/img/store/teppichinnen_schoen.JPG"
+                  alt="Teppichauswahl 1"
+                  fill
+                  className="object-cover group-hover:scale-110 transition duration-500"
+                />
+              </div>
+              <div className="relative h-64 rounded-xl overflow-hidden shadow-lg group">
+                <Image
+                  src="/img/store/teppich2innen_gut.JPG"
+                  alt="Teppichauswahl 2"
+                  fill
+                  className="object-cover group-hover:scale-110 transition duration-500"
+                />
+              </div>
+              <div className="relative h-64 rounded-xl overflow-hidden shadow-lg group">
+                <Image
+                  src="/img/store/teppich3innen_schoen.JPG"
+                  alt="Teppichauswahl 3"
+                  fill
+                  className="object-cover group-hover:scale-110 transition duration-500"
+                />
+              </div>
             </div>
           </div>
         </div>

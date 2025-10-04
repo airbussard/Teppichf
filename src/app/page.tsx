@@ -1,38 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Reviews from '@/components/Reviews'
+import HeroSlider from '@/components/HeroSlider'
 
 export default function Home() {
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative h-[500px] sm:h-[600px] lg:h-[700px] bg-gradient-to-r from-red-900 to-red-700">
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <div className="text-white max-w-2xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-              Ihr Spezialist für Orientteppiche in Frankfurt
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8">
-              Verkauf, Ankauf, Reinigung und professionelle Reparatur von Perserteppichen
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Link
-                href="/verkauf"
-                className="bg-white text-red-700 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition text-center"
-              >
-                Teppiche ansehen
-              </Link>
-              <Link
-                href="/kontakt"
-                className="border-2 border-white text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-700 transition text-center"
-              >
-                Kontakt aufnehmen
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Slider */}
+      <HeroSlider />
 
       {/* Services Section */}
       <section className="py-20 bg-white">
@@ -114,8 +89,8 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div className="order-2 md:order-1">
               <Image
-                src="/img/Geschaeftvonaussen.jpeg"
-                alt="Teppichgeschäft Frankfurt"
+                src="/img/store/aussen_sehrgut.JPG"
+                alt="Teppichhaus am Dornbusch - Außenansicht"
                 width={600}
                 height={400}
                 className="rounded-xl shadow-xl w-full"
