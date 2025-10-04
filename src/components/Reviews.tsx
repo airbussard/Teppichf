@@ -1,3 +1,6 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 interface Review {
@@ -77,6 +80,16 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function Reviews() {
   const averageRating = (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1)
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null)
+
+  // Handle ESC key to close lightbox
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxImage(null)
+    }
+    window.addEventListener('keydown', handleEsc)
+    return () => window.removeEventListener('keydown', handleEsc)
+  }, [])
 
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-white">
@@ -138,24 +151,23 @@ export default function Reviews() {
               {/* Visit Photo */}
               {review.visitPhoto && (
                 <div className="mt-4">
-                  <a
-                    href={review.visitPhoto}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block relative h-48 rounded-lg overflow-hidden hover:opacity-90 transition cursor-pointer group"
+                  <button
+                    onClick={() => setLightboxImage(review.visitPhoto!)}
+                    className="block relative w-full h-48 rounded-lg overflow-hidden hover:opacity-90 transition cursor-pointer group"
                   >
                     <Image
                       src={review.visitPhoto}
                       alt={`Besuch von ${review.name}`}
-                      fill
-                      className="object-cover"
+                      width={400}
+                      height={300}
+                      className="object-cover w-full h-full"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition flex items-center justify-center">
                       <svg className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                       </svg>
                     </div>
-                  </a>
+                  </button>
                   <p className="text-xs text-gray-500 mt-2 text-center">Foto vom Besuch - Klicken zum Vergrößern</p>
                 </div>
               )}
@@ -178,6 +190,38 @@ export default function Reviews() {
           </a>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4 animate-fadeIn"
+          onClick={() => setLightboxImage(null)}
+        >
+          <div className="relative max-w-6xl max-h-[90vh] animate-zoomIn">
+            {/* Close Button */}
+            <button
+              onClick={() => setLightboxImage(null)}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition"
+              aria-label="Schließen"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Image */}
+            <div className="relative" onClick={(e) => e.stopPropagation()}>
+              <Image
+                src={lightboxImage}
+                alt="Vergrößertes Foto"
+                width={1200}
+                height={900}
+                className="max-h-[90vh] w-auto h-auto object-contain rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
