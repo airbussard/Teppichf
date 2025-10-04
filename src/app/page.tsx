@@ -89,7 +89,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div className="order-2 md:order-1">
               <Image
-                src="/img/store/aussen_sehrgut.JPG"
+                src="/img/store/aussen_sehrgut.jpg"
                 alt="Teppichhaus am Dornbusch - Außenansicht"
                 width={600}
                 height={400}

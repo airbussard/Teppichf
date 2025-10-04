@@ -6,17 +6,17 @@ import Link from 'next/link'
 
 const slides = [
   {
-    image: '/img/store/aussen_sehrgut.JPG',
+    image: '/img/store/aussen_sehrgut.jpg',
     title: 'Ihr Spezialist für Orientteppiche in Frankfurt',
     subtitle: 'Verkauf, Ankauf, Reinigung und professionelle Reparatur von Perserteppichen'
   },
   {
-    image: '/img/store/teppichinnen_schoen.JPG',
+    image: '/img/store/teppichinnen_schoen.jpg',
     title: 'Exquisite Teppichauswahl',
     subtitle: 'Handgeknüpfte Perserteppiche und Orientteppiche in großer Vielfalt'
   },
   {
-    image: '/img/store/teppich2innen_gut.JPG',
+    image: '/img/store/teppich2innen_gut.jpg',
     title: 'Qualität und Tradition',
     subtitle: 'Seit Jahren Ihr vertrauensvoller Partner für hochwertige Teppiche'
   }

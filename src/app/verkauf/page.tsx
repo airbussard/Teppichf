@@ -113,7 +113,7 @@ export default function Verkauf() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg group">
                 <Image
-                  src="/img/store/teppichinnen_schoen.JPG"
+                  src="/img/store/teppichinnen_schoen.jpg"
                   alt="Teppichauswahl 1"
                   fill
                   className="object-cover group-hover:scale-110 transition duration-500"
@@ -121,7 +121,7 @@ export default function Verkauf() {
               </div>
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg group">
                 <Image
-                  src="/img/store/teppich2innen_gut.JPG"
+                  src="/img/store/teppich2innen_gut.jpg"
                   alt="Teppichauswahl 2"
                   fill
                   className="object-cover group-hover:scale-110 transition duration-500"
@@ -129,7 +129,7 @@ export default function Verkauf() {
               </div>
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg group">
                 <Image
-                  src="/img/store/teppich3innen_schoen.JPG"
+                  src="/img/store/teppich3innen_schoen.jpg"
                   alt="Teppichauswahl 3"
                   fill
                   className="object-cover group-hover:scale-110 transition duration-500"
