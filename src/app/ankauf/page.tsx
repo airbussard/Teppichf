@@ -1,6 +1,124 @@
-import Link from 'next/link'
+'use client'
+
+import { useState, useRef } from 'react'
+import Image from 'next/image'
+
+interface UploadedImage {
+  data: string
+  type: string
+  name: string
+}
 
 export default function Ankauf() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    description: '',
+  })
+  const [images, setImages] = useState<UploadedImage[]>([])
+  const [isDragging, setIsDragging] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleFileSelect = async (files: FileList | null) => {
+    if (!files) return
+
+    const newImages: UploadedImage[] = []
+    const maxSize = 5 * 1024 * 1024 // 5MB
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png']
+
+    for (let i = 0; i < Math.min(files.length, 5 - images.length); i++) {
+      const file = files[i]
+
+      if (!allowedTypes.includes(file.type)) {
+        setErrorMessage('Nur JPG, JPEG und PNG Dateien sind erlaubt.')
+        continue
+      }
+
+      if (file.size > maxSize) {
+        setErrorMessage('Dateien dürfen maximal 5MB groß sein.')
+        continue
+      }
+
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          newImages.push({
+            data: e.target.result as string,
+            type: file.type,
+            name: file.name,
+          })
+          if (newImages.length === files.length || images.length + newImages.length >= 5) {
+            setImages([...images, ...newImages])
+          }
+        }
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(true)
+  }
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(false)
+  }
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(false)
+    handleFileSelect(e.dataTransfer.files)
+  }
+
+  const removeImage = (index: number) => {
+    setImages(images.filter((_, i) => i !== index))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('loading')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/ankauf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          images,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', phone: '', description: '' })
+        setImages([])
+      } else {
+        setStatus('error')
+        setErrorMessage(data.error || 'Ein Fehler ist aufgetreten')
+      }
+    } catch (error) {
+      setStatus('error')
+      setErrorMessage('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.')
+    }
+  }
+
   return (
     <div>
       {/* Hero Section */}
@@ -78,7 +196,7 @@ export default function Ankauf() {
                 </div>
                 <h3 className="text-xl font-bold mb-2">Kontakt</h3>
                 <p className="text-gray-600">
-                  Kontaktieren Sie uns telefonisch oder per E-Mail
+                  Senden Sie uns Fotos und Informationen über das Formular
                 </p>
               </div>
 
@@ -114,28 +232,198 @@ export default function Ankauf() {
             </div>
           </div>
 
-          {/* Contact Info */}
+          {/* Ankauf Form */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+              Senden Sie uns Fotos Ihrer Teppiche
+            </h2>
+            <div className="max-w-3xl mx-auto bg-gray-50 rounded-xl p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                      Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                      placeholder="Ihr Name"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      E-Mail *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                      placeholder="ihre@email.de"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    Telefon
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                    placeholder="Ihre Telefonnummer (optional)"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+                    Beschreibung des Teppichs *
+                  </label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent resize-none"
+                    placeholder="Größe, Herkunft, Zustand, Alter etc..."
+                  ></textarea>
+                </div>
+
+                {/* Drag & Drop Zone */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Fotos hochladen (bis zu 5 Bilder)
+                  </label>
+                  <div
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    onClick={() => fileInputRef.current?.click()}
+                    className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition ${
+                      isDragging
+                        ? 'border-red-700 bg-red-50'
+                        : 'border-gray-300 hover:border-red-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    <svg
+                      className="mx-auto h-12 w-12 text-gray-400"
+                      stroke="currentColor"
+                      fill="none"
+                      viewBox="0 0 48 48"
+                    >
+                      <path
+                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    <p className="mt-2 text-sm text-gray-600">
+                      <span className="font-semibold text-red-700">Klicken zum Hochladen</span> oder
+                      Dateien hierher ziehen
+                    </p>
+                    <p className="mt-1 text-xs text-gray-500">
+                      JPG, JPEG, PNG bis zu 5MB pro Bild
+                    </p>
+                  </div>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/jpeg,image/jpg,image/png"
+                    multiple
+                    onChange={(e) => handleFileSelect(e.target.files)}
+                    className="hidden"
+                  />
+                </div>
+
+                {/* Image Previews */}
+                {images.length > 0 && (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                    {images.map((image, index) => (
+                      <div key={index} className="relative group">
+                        <div className="relative h-24 rounded-lg overflow-hidden border-2 border-gray-300">
+                          <Image
+                            src={image.data}
+                            alt={`Vorschau ${index + 1}`}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="absolute -top-2 -right-2 bg-red-700 text-white rounded-full p-1 hover:bg-red-800 transition"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {status === 'success' && (
+                  <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+                    Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns zeitnah bei Ihnen.
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+                    {errorMessage}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="w-full bg-red-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-800 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+                >
+                  {status === 'loading' ? 'Wird gesendet...' : 'Anfrage senden'}
+                </button>
+
+                <p className="text-sm text-gray-500 text-center">
+                  * Pflichtfelder
+                </p>
+              </form>
+            </div>
+          </div>
+
+          {/* Contact Info Banner */}
           <div className="bg-red-50 rounded-xl p-8 text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Interessiert? Kontaktieren Sie uns!
+              Möchten Sie uns Ihre Teppiche verkaufen?
             </h3>
             <p className="text-lg text-gray-600 mb-6">
-              Rufen Sie uns an oder senden Sie uns Fotos Ihrer Teppiche per E-Mail
+              Nutzen Sie das Formular oben oder rufen Sie uns direkt an für eine schnelle Bewertung
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:069232581"
-                className="inline-block bg-red-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-800 transition"
-              >
-                069 - 232 581
-              </a>
-              <Link
-                href="/kontakt"
-                className="inline-block border-2 border-red-700 text-red-700 px-8 py-3 rounded-lg font-semibold hover:bg-red-700 hover:text-white transition"
-              >
-                Kontaktformular
-              </Link>
-            </div>
+            <a
+              href="tel:069232581"
+              className="inline-block bg-red-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-800 transition text-xl"
+            >
+              069 - 232 581
+            </a>
           </div>
         </div>
       </section>
