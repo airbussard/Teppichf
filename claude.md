@@ -1259,18 +1259,30 @@ E-Mail: info@teppich-frankfurt.de
 ### Caprover Setup
 
 **Server:** Caprover (Docker-basiert)
+**URL:** https://captain.immogear.de
 **Repository:** https://github.com/airbussard/Teppichf
+
+**Webhook für automatisches Deployment:**
+```
+https://captain.immogear.de/api/v2/user/apps/webhooks/triggerbuild?namespace=captain&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InRva2VuVmVyc2lvbiI6Ijc2ZjQ5OTVkLWYxNjAtNGEyZC05MWEwLTdhYjlmZWE4Y2ZhMyIsImFwcE5hbWUiOiJ0ZXBwaWNoLWZyYW5rZnVydCIsIm5hbWVzcGFjZSI6ImNhcHRhaW4ifSwiaWF0IjoxNzU5NTA1MTczfQ.Bf-eUzP-i1eHY3Jp23ejnpoN5bSrOe22p32QJNwcYSI
+```
 
 **Build-Prozess:**
 
 1. **GitHub Push:** Code wird zu GitHub gepusht
-2. **Caprover Webhook:** Caprover erkennt neuen Commit
+2. **Caprover Webhook:** Caprover erkennt neuen Commit (via Webhook)
 3. **Docker Build:**
    - `npm install`
    - `npm run build` (Next.js Standalone Build)
    - `output: 'standalone'` erstellt optimiertes Bundle
 4. **Container Start:** Node.js Server startet auf Port 3000
 5. **Reverse Proxy:** Caprover leitet Domain auf Container
+
+**Manuelles Deployment auslösen:**
+```bash
+# Via curl
+curl -X POST "https://captain.immogear.de/api/v2/user/apps/webhooks/triggerbuild?namespace=captain&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InRva2VuVmVyc2lvbiI6Ijc2ZjQ5OTVkLWYxNjAtNGEyZC05MWEwLTdhYjlmZWE4Y2ZhMyIsImFwcE5hbWUiOiJ0ZXBwaWNoLWZyYW5rZnVydCIsIm5hbWVzcGFjZSI6ImNhcHRhaW4ifSwiaWF0IjoxNzU5NTA1MTczfQ.Bf-eUzP-i1eHY3Jp23ejnpoN5bSrOe22p32QJNwcYSI"
+```
 
 **Dockerfile (automatisch generiert):**
 ```dockerfile
