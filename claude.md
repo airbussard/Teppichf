@@ -1758,7 +1758,7 @@ npm run build
 
 ## Credits
 
-**Entwickelt von:** [emergence.tech](https://emergence.tech) ❤️
+**Entwickelt von:** [getemergence.com](https://getemergence.com) ❤️
 **Framework:** Next.js 15
 **Styling:** Tailwind CSS v4
 **Deployment:** Caprover
@@ -1794,7 +1794,7 @@ npm run build
 **Verbesserungen:**
 - 🎨 Einheitliches Platzhalter-Bild für alle Produkte
 - 📧 E-Mail-Templates mit Teppich-ID Hervorhebung
-- 🔗 Developer Credits aktualisiert (dev.tech → emergence.tech)
+- 🔗 Developer Credits aktualisiert (dev.tech → getemergence.com)
 - 📱 Teppichwäsche: Kostenloser Hol-/Bringservice betont
 - 🗺️ Kontaktseite: Karte in Full-Width über Footer
 - 🖼️ Kontaktseite: Außenansicht-Foto statt Inline-Karte

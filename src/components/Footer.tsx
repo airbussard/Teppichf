@@ -41,12 +41,12 @@ export default function Footer() {
           <p className="mt-2 text-sm">
             Website entwickelt mit ❤️ von{' '}
             <a
-              href="https://emergence.tech"
+              href="https://getemergence.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-red-400 hover:text-red-300 transition"
             >
-              emergence.tech
+              getemergence.com
             </a>
           </p>
         </div>
