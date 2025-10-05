@@ -33,9 +33,9 @@ export default function Navigation() {
             <Link href="/" className="text-gray-700 hover:text-red-700 transition">
               Start
             </Link>
-            <Link href="/angebote" className="text-gray-700 hover:text-red-700 transition">
+            {/* <Link href="/angebote" className="text-gray-700 hover:text-red-700 transition">
               Angebote
-            </Link>
+            </Link> */}
             <Link href="/verkauf" className="text-gray-700 hover:text-red-700 transition">
               Verkauf
             </Link>
@@ -78,9 +78,9 @@ export default function Navigation() {
             <Link href="/" className="block px-3 py-2 text-gray-700 hover:text-red-700 hover:bg-gray-50 rounded-md">
               Start
             </Link>
-            <Link href="/angebote" className="block px-3 py-2 text-gray-700 hover:text-red-700 hover:bg-gray-50 rounded-md">
+            {/* <Link href="/angebote" className="block px-3 py-2 text-gray-700 hover:text-red-700 hover:bg-gray-50 rounded-md">
               Angebote
-            </Link>
+            </Link> */}
             <Link href="/verkauf" className="block px-3 py-2 text-gray-700 hover:text-red-700 hover:bg-gray-50 rounded-md">
               Verkauf
             </Link>
