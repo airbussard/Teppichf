@@ -1213,7 +1213,6 @@ SMTP_PASS=your-app-password
 **Rechtliche Daten:**
 ```
 Sitz: Am Weissen Berg 5, 61476 Kronberg/Taunus
-Lager: Gutleutstr. 320, 60327 Frankfurt
 Ladengeschäft: Am Dornbusch 24, 60320 Frankfurt am Main
 
 Vertretungsberechtigter: Sirous Koukpari
@@ -1222,7 +1221,8 @@ Umsatzsteuer-ID: DE212103524
 
 Kontakt:
 Telefon: 069 - 232 581
-E-Mail: info@teppichankauf24.de
+Mobil: 0172 951 1370 (WhatsApp)
+E-Mail: info@teppich-frankfurt.de
 ```
 
 ### Google Bewertungen

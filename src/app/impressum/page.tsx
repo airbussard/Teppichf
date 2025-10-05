@@ -22,16 +22,11 @@ export default function Impressum() {
             60320 Frankfurt am Main
           </p>
 
-          <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Lager:</h3>
-          <p className="mb-4">
-            Gutleutstr. 320<br />
-            60327 Frankfurt
-          </p>
-
           <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Kontakt:</h3>
           <p className="mb-4">
             Telefon: 069 - 232 581<br />
-            E-Mail: <a href="mailto:info@teppichankauf24.de" className="text-red-700 hover:text-red-800">info@teppichankauf24.de</a>
+            Mobil: 0172 951 1370<br />
+            E-Mail: <a href="mailto:info@teppich-frankfurt.de" className="text-red-700 hover:text-red-800">info@teppich-frankfurt.de</a>
           </p>
 
           <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Vertretungsberechtigter:</h3>

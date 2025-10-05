@@ -68,7 +68,8 @@ export default function Datenschutz() {
             Am Weissen Berg 5<br />
             61476 Kronberg/Taunus<br />
             Telefon: 069 - 232 581<br />
-            E-Mail: info@teppichankauf24.de
+            Mobil: 0172 951 1370<br />
+            E-Mail: info@teppich-frankfurt.de
           </p>
 
           <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Widerruf Ihrer Einwilligung zur Datenverarbeitung</h3>

@@ -96,8 +96,12 @@ export default function Kontakt() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-bold text-gray-900 mb-1">Telefon</h3>
-                    <a href="tel:069232581" className="text-red-700 hover:text-red-800 text-lg">
+                    <a href="tel:069232581" className="text-red-700 hover:text-red-800 text-lg block">
                       069 - 232 581
+                    </a>
+                    <a href="tel:01729511370" className="text-red-700 hover:text-red-800 text-lg flex items-center gap-2 mt-1">
+                      0172 951 1370
+                      <span className="text-sm text-gray-600">(WhatsApp)</span>
                     </a>
                   </div>
                 </div>
@@ -110,8 +114,8 @@ export default function Kontakt() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-bold text-gray-900 mb-1">E-Mail</h3>
-                    <a href="mailto:info@teppichankauf24.de" className="text-red-700 hover:text-red-800">
-                      info@teppichankauf24.de
+                    <a href="mailto:info@teppich-frankfurt.de" className="text-red-700 hover:text-red-800">
+                      info@teppich-frankfurt.de
                     </a>
                   </div>
                 </div>

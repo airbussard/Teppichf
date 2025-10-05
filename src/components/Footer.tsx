@@ -17,7 +17,8 @@ export default function Footer() {
             <p className="text-gray-400">Am Dornbusch 24</p>
             <p className="text-gray-400">60320 Frankfurt am Main</p>
             <p className="text-gray-400 mt-2">Tel: 069 - 232 581</p>
-            <p className="text-gray-400">E-Mail: info@teppichankauf24.de</p>
+            <p className="text-gray-400">Mobil: 0172 951 1370</p>
+            <p className="text-gray-400">E-Mail: info@teppich-frankfurt.de</p>
           </div>
 
           <div>
