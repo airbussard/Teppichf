@@ -46,18 +46,18 @@ const reviews: Review[] = [
     initials: 'OG'
   },
   {
-    name: 'S. Buth',
-    text: 'Nette und kompetente Mitarbeiter, nicht aufdringlich. Leider schwierige Parksituation',
-    rating: 4,
-    initials: 'SB'
-  },
-  {
     name: 'Roland Klimas',
     text: 'Freundlich und Kompetent !',
     rating: 5,
     badge: 'Local Guide',
     initials: 'RK',
     visitPhoto: '/img/BILD1.jpeg'
+  },
+  {
+    name: 'S. Buth',
+    text: 'Nette und kompetente Mitarbeiter, nicht aufdringlich. Leider schwierige Parksituation',
+    rating: 4,
+    initials: 'SB'
   },
   {
     name: 'Schobbepetzer',
