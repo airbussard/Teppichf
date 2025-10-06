@@ -58,6 +58,12 @@ const reviews: Review[] = [
     badge: 'Local Guide',
     initials: 'RK',
     visitPhoto: '/img/BILD1.jpeg'
+  },
+  {
+    name: 'Schobbepetzer',
+    text: 'Sehr freundliche und akkurate Beratung mit gutem Angebot',
+    rating: 5,
+    initials: 'SP'
   }
 ]
 
