@@ -1,6 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 
 export default function Footer() {
+  const resetCookieConsent = () => {
+    localStorage.removeItem('cookieConsent')
+    localStorage.removeItem('cookieConsentDate')
+    window.location.reload()
+  }
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -33,6 +41,12 @@ export default function Footer() {
               <Link href="/agb" className="block text-gray-400 hover:text-white transition">
                 AGB
               </Link>
+              <button
+                onClick={resetCookieConsent}
+                className="block text-gray-400 hover:text-white transition text-left"
+              >
+                🍪 Cookie-Einstellungen
+              </button>
             </div>
           </div>
         </div>
