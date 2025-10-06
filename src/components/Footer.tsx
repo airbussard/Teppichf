@@ -42,10 +42,11 @@ export default function Footer() {
                 AGB
               </Link>
               <button
+                type="button"
                 onClick={resetCookieConsent}
                 className="block text-gray-400 hover:text-white transition text-left"
               >
-                🍪 Cookie-Einstellungen
+                Cookie-Einstellungen
               </button>
             </div>
           </div>

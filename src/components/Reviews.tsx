@@ -64,6 +64,12 @@ const reviews: Review[] = [
     text: 'Sehr freundliche und akkurate Beratung mit gutem Angebot',
     rating: 5,
     initials: 'SP'
+  },
+  {
+    name: 'Tobias Fischer',
+    text: 'Sehr freundlicher kontakt!',
+    rating: 5,
+    initials: 'TF'
   }
 ]
 
