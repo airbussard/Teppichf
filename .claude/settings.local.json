@@ -21,7 +21,11 @@
       "Bash(do sed -i '' 's/text-xl text-white/text-base sm:text-lg md:text-xl text-white/g' \"$file/page.tsx\")",
       "Bash(for:*)",
       "Bash(do mv \"$file\" \"$file%.JPG.jpg\")",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(git log:*)",
+      "Bash(curl -X POST \"https://captain.immogear.de/api/v2/user/apps/webhooks/triggerbuild?namespace=captain&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InRva2VuVmVyc2lvbiI6Ijc2ZjQ5OTVkLWYxNjAtNGEyZC05MWEwLTdhYjlmZWE4Y2ZhMyIsImFwcE5hbWUiOiJ0ZXBwaWNoLWZyYW5rZnVydCIsIm5hbWVzcGFjZSI6ImNhcHRhaW4ifSwiaWF0IjoxNzU5NTA1MTczfQ.Bf-eUzP-i1eHY3Jp23ejnpoN5bSrOe22p32QJNwcYSI\")",
+      "WebSearch"
     ],
     "deny": [],
     "ask": []

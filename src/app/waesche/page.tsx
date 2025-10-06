@@ -1,5 +1,24 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Teppichwäsche Frankfurt - Professionelle Teppichreinigung',
+  description: 'Professionelle Teppichwäsche in Frankfurt für Orientteppiche und Perserteppiche. ✓ Kostenloser Hol- und Bringservice ✓ Schonende Reinigung ✓ Fleckenentfernung ✓ Farberhaltung',
+  openGraph: {
+    title: 'Teppichwäsche Frankfurt - Professionelle Teppichreinigung',
+    description: 'Professionelle Teppichwäsche in Frankfurt. Kostenloser Hol- und Bringservice, schonende Reinigung für Orientteppiche.',
+    url: 'https://teppich-frankfurt.de/waesche',
+    images: [
+      {
+        url: '/img/teppichwaesche.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Teppichwäsche - Teppichhaus am Dornbusch',
+      }
+    ],
+  },
+}
 
 export default function Waesche() {
   return (

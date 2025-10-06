@@ -1,5 +1,24 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Orientteppiche kaufen Frankfurt - Perserteppiche Verkauf',
+  description: 'Hochwertige Orientteppiche und Perserteppiche kaufen in Frankfurt. ✓ Handgeknüpft ✓ Große Auswahl ✓ Perserteppiche aus Iran ✓ Türkische & Afghanische Teppiche ✓ Fachberatung am Dornbusch',
+  openGraph: {
+    title: 'Orientteppiche kaufen Frankfurt - Perserteppiche Verkauf',
+    description: 'Hochwertige Orientteppiche und Perserteppiche kaufen in Frankfurt. Handgeknüpft, große Auswahl, kompetente Beratung.',
+    url: 'https://teppich-frankfurt.de/verkauf',
+    images: [
+      {
+        url: '/img/store/teppichinnen_schoen.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Orientteppiche - Teppichhaus am Dornbusch',
+      }
+    ],
+  },
+}
 
 export default function Verkauf() {
   return (

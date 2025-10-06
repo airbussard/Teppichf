@@ -1,3 +1,14 @@
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'AGB - Allgemeine Geschäftsbedingungen',
+  description: 'Allgemeine Geschäftsbedingungen - Teppichhaus am Dornbusch, Frankfurt am Main',
+  robots: {
+    index: false,
+    follow: true,
+  },
+}
+
 export default function AGB() {
   return (
     <div className="py-20">

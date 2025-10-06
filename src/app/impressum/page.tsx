@@ -1,3 +1,14 @@
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Impressum',
+  description: 'Impressum - S. Koukpari Handelsgesellschaft mbH, Teppichhaus am Dornbusch, Frankfurt am Main',
+  robots: {
+    index: false,
+    follow: true,
+  },
+}
+
 export default function Impressum() {
   return (
     <div className="py-20">

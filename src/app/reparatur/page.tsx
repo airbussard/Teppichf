@@ -1,5 +1,24 @@
 import Link from 'next/link'
 import ImageCompare from '@/components/ImageCompare'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Teppichreparatur Frankfurt - Restaurierung von Orientteppichen',
+  description: 'Professionelle Teppichreparatur in Frankfurt. ✓ Nachknüpfen ✓ Kanten- & Fransenreparatur ✓ Mottenbefall-Sanierung ✓ Traditionelle Techniken ✓ Kaum sichtbare Reparatur',
+  openGraph: {
+    title: 'Teppichreparatur Frankfurt - Restaurierung von Orientteppichen',
+    description: 'Professionelle Teppichreparatur und Restaurierung in Frankfurt. Traditionelle Techniken, kaum sichtbare Reparatur.',
+    url: 'https://teppich-frankfurt.de/reparatur',
+    images: [
+      {
+        url: '/img/Teppichreperaturnachher.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Teppichreparatur Nachher - Teppichhaus am Dornbusch',
+      }
+    ],
+  },
+}
 
 export default function Reparatur() {
   return (

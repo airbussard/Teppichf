@@ -1,3 +1,14 @@
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Datenschutzerklärung',
+  description: 'Datenschutzerklärung - Teppichhaus am Dornbusch, Frankfurt am Main',
+  robots: {
+    index: false,
+    follow: true,
+  },
+}
+
 export default function Datenschutz() {
   return (
     <div className="py-20">

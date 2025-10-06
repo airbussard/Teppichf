@@ -1,7 +1,26 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Metadata } from 'next'
 import Reviews from '@/components/Reviews'
 import HeroSlider from '@/components/HeroSlider'
+
+export const metadata: Metadata = {
+  title: 'Teppichhaus am Dornbusch - Orientteppiche & Perserteppiche Frankfurt',
+  description: 'Ihr Spezialist für Orientteppiche und Perserteppiche in Frankfurt am Main. Verkauf, Ankauf, Teppichwäsche und professionelle Reparaturen. ✓ Große Auswahl ✓ Fachberatung ✓ Am Dornbusch 24',
+  openGraph: {
+    title: 'Teppichhaus am Dornbusch - Orientteppiche & Perserteppiche Frankfurt',
+    description: 'Ihr Spezialist für Orientteppiche und Perserteppiche in Frankfurt am Main. Verkauf, Ankauf, Teppichwäsche und professionelle Reparaturen.',
+    url: 'https://teppich-frankfurt.de',
+    images: [
+      {
+        url: '/img/store/aussen_sehrgut.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Teppichhaus am Dornbusch - Außenansicht',
+      }
+    ],
+  },
+}
 
 export default function Home() {
   return (
