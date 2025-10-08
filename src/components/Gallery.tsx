@@ -65,13 +65,10 @@ export default function Gallery() {
               onClick={() => openLightbox(image.src, image.alt)}
               className="relative aspect-square rounded-lg overflow-hidden group cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2"
             >
-              <Image
+              <img
                 src={image.src}
                 alt={image.alt}
-                width={600}
-                height={600}
-                unoptimized={true}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
               {/* Hover Overlay with Zoom Icon */}
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
