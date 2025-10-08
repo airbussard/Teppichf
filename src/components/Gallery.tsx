@@ -68,9 +68,10 @@ export default function Gallery() {
               <Image
                 src={image.src}
                 alt={image.alt}
-                fill
+                width={600}
+                height={600}
                 sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
               {/* Hover Overlay with Zoom Icon */}
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
@@ -121,8 +122,8 @@ export default function Gallery() {
               <Image
                 src={lightboxImage}
                 alt={lightboxAlt}
-                width={1200}
-                height={900}
+                width={1600}
+                height={1200}
                 className="max-h-[90vh] w-auto h-auto object-contain rounded-lg"
                 priority
               />
