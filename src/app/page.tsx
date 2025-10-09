@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import Reviews from '@/components/Reviews'
 import HeroSlider from '@/components/HeroSlider'
-import Gallery from '@/components/Gallery'
+// import Gallery from '@/components/Gallery'
 
 export const metadata: Metadata = {
   title: 'Teppichhaus am Dornbusch - Orientteppiche & Perserteppiche Frankfurt',
@@ -141,7 +141,7 @@ export default function Home() {
       </section>
 
       {/* Gallery Section */}
-      <Gallery />
+      {/* <Gallery /> */}
 
       {/* Reviews Section */}
       <Reviews />
