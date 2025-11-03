@@ -124,6 +124,18 @@ export default function Impressum() {
               getemergence.com
             </a>
           </p>
+
+          <hr className="my-8 border-gray-300" />
+          <p className="text-sm text-gray-500 text-center">
+            Letzte Aktualisierung: {new Date().toLocaleString('de-DE', {
+              timeZone: 'Europe/Berlin',
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit'
+            })}
+          </p>
         </div>
       </div>
     </div>
