@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     // Email content - Main email with full details
     const mailOptions = {
       from: process.env.SMTP_USER,
-      to: 'oscar.knabe@knmail.de',
+      to: 'persian-carpets@gmx.de',
       subject: `Teppich-Anfrage: ${teppichName || 'Allgemeine Anfrage'}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #b91c1c;">Neue Anfrage eingegangen</h2>
           <p>Es wurde eine neue Anfrage über das <strong>Produktanfrage-Formular</strong> auf teppich-frankfurt.de gesendet.</p>
-          <p>Die vollständigen Details wurden an <strong>oscar.knabe@knmail.de</strong> weitergeleitet.</p>
+          <p>Die vollständigen Details wurden an <strong>persian-carpets@gmx.de</strong> weitergeleitet.</p>
           <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
           <p style="color: #6b7280; font-size: 14px;">
             Zeitstempel: ${new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin' })}
