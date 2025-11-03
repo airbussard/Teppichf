@@ -32,10 +32,10 @@ export async function POST(request: NextRequest) {
       encoding: 'base64',
     })) || []
 
-    // Email content
+    // Email content - Main email with full details
     const mailOptions = {
       from: process.env.SMTP_USER,
-      to: 'info@knmail.de',
+      to: 'persian-carpets@gmx.de',
       subject: `Teppichankauf-Anfrage von ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -64,8 +64,27 @@ export async function POST(request: NextRequest) {
       attachments,
     }
 
-    // Send email
+    // Notification email - Only info that a request was received
+    const notificationOptions = {
+      from: process.env.SMTP_USER,
+      to: 'info@knmail.de',
+      subject: 'Neue Anfrage - Ankauf-Formular',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #b91c1c;">Neue Anfrage eingegangen</h2>
+          <p>Es wurde eine neue Anfrage über das <strong>Ankauf-Formular</strong> auf teppich-frankfurt.de gesendet.</p>
+          <p>Die vollständigen Details wurden an <strong>persian-carpets@gmx.de</strong> weitergeleitet.</p>
+          <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
+          <p style="color: #6b7280; font-size: 14px;">
+            Zeitstempel: ${new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin' })}
+          </p>
+        </div>
+      `,
+    }
+
+    // Send both emails
     await transporter.sendMail(mailOptions)
+    await transporter.sendMail(notificationOptions)
 
     return NextResponse.json(
       { message: 'Anfrage erfolgreich gesendet!' },
