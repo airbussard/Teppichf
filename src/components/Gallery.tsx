@@ -4,18 +4,22 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const galleryImages = [
-  { src: '/img/gallery/gallery-01.jpeg', alt: 'Orientteppich 1' },
-  { src: '/img/gallery/gallery-02.jpeg', alt: 'Orientteppich 2' },
-  { src: '/img/gallery/gallery-03.jpeg', alt: 'Orientteppich 3' },
-  { src: '/img/gallery/gallery-04.jpeg', alt: 'Orientteppich 4' },
-  { src: '/img/gallery/gallery-05.jpeg', alt: 'Orientteppich 5' },
-  { src: '/img/gallery/gallery-06.jpeg', alt: 'Orientteppich 6' },
-  { src: '/img/gallery/gallery-07.jpeg', alt: 'Orientteppich 7' },
-  { src: '/img/gallery/gallery-08.jpeg', alt: 'Orientteppich 8' },
-  { src: '/img/gallery/gallery-09.jpeg', alt: 'Orientteppich 9' },
-  { src: '/img/gallery/gallery-10.jpeg', alt: 'Orientteppich 10' },
-  { src: '/img/gallery/gallery-11.jpeg', alt: 'Orientteppich 11' },
-  { src: '/img/gallery/gallery-12.jpeg', alt: 'Orientteppich 12' },
+  { src: '/img/gallery/gallery-01.jpg', alt: 'Orientteppich 1' },
+  { src: '/img/gallery/gallery-02.jpg', alt: 'Orientteppich 2' },
+  { src: '/img/gallery/gallery-03.jpg', alt: 'Orientteppich 3' },
+  { src: '/img/gallery/gallery-04.jpg', alt: 'Orientteppich 4' },
+  { src: '/img/gallery/gallery-05.jpg', alt: 'Orientteppich 5' },
+  { src: '/img/gallery/gallery-06.jpg', alt: 'Orientteppich 6' },
+  { src: '/img/gallery/gallery-07.jpg', alt: 'Orientteppich 7' },
+  { src: '/img/gallery/gallery-08.jpg', alt: 'Orientteppich 8' },
+  { src: '/img/gallery/gallery-09.jpg', alt: 'Orientteppich 9' },
+  { src: '/img/gallery/gallery-10.jpg', alt: 'Orientteppich 10' },
+  { src: '/img/gallery/gallery-11.jpg', alt: 'Orientteppich 11' },
+  { src: '/img/gallery/gallery-12.jpg', alt: 'Orientteppich 12' },
+  { src: '/img/gallery/gallery-13.jpg', alt: 'Orientteppich 13' },
+  { src: '/img/gallery/gallery-14.jpg', alt: 'Orientteppich 14' },
+  { src: '/img/gallery/gallery-15.jpg', alt: 'Orientteppich 15' },
+  { src: '/img/gallery/gallery-16.jpg', alt: 'Orientteppich 16' },
 ]
 
 export default function Gallery() {
