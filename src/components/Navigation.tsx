@@ -32,7 +32,6 @@ export default function Navigation() {
 
   const navLinks = [
     { href: '/', label: 'Start' },
-    { href: '/angebote', label: 'Angebote' },
     { href: '/verkauf', label: 'Verkauf' },
     { href: '/ankauf', label: 'Ankauf' },
     { href: '/waesche', label: 'Teppichwäsche' },
@@ -71,21 +70,24 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-3 lg:px-4 py-2 text-sm lg:text-base font-medium transition-colors duration-200 ${
+                className={`group relative px-3 lg:px-4 py-2 text-sm lg:text-base font-medium transition-colors duration-200 ${
                   isActive(link.href)
                     ? 'text-burgundy'
                     : 'text-gray-700 hover:text-burgundy'
                 }`}
               >
                 {link.label}
-                {isActive(link.href) && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-gold rounded-full" />
-                )}
+                {/* Animierte Unterstreichung */}
+                <span className={`absolute bottom-0 left-1/2 h-0.5 bg-gold rounded-full transition-all duration-300 ease-out ${
+                  isActive(link.href)
+                    ? 'w-6 -translate-x-1/2'
+                    : 'w-0 group-hover:w-full group-hover:left-0 group-hover:translate-x-0'
+                }`} />
               </Link>
             ))}
             <Link
               href="/kontakt"
-              className={`ml-2 px-5 lg:px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${
+              className={`ml-2 px-5 lg:px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
                 isActive('/kontakt')
                   ? 'bg-gold text-gray-900 shadow-md'
                   : 'bg-burgundy text-white hover:bg-burgundy-dark shadow-md hover:shadow-lg'

@@ -50,9 +50,6 @@ export default function Footer() {
               <Link href="/reparatur" className="block text-gray-300 hover:text-gold transition-colors duration-300">
                 Teppichreparatur
               </Link>
-              <Link href="/angebote" className="block text-gray-300 hover:text-gold transition-colors duration-300">
-                Aktuelle Angebote
-              </Link>
             </div>
           </div>
 
