@@ -6,113 +6,125 @@ import Link from 'next/link'
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {
     const consent = localStorage.getItem('cookieConsent')
     if (!consent) {
-      setShowBanner(true)
+      // Kurze Verzögerung für sanftere Animation
+      setTimeout(() => {
+        setShowBanner(true)
+        setIsAnimating(true)
+      }, 500)
     }
   }, [])
 
   const acceptAll = () => {
     localStorage.setItem('cookieConsent', 'all')
     localStorage.setItem('cookieConsentDate', new Date().toISOString())
-    setShowBanner(false)
-    // Hier könnte Analytics initialisiert werden
-    // initializeAnalytics()
+    setIsAnimating(false)
+    setTimeout(() => setShowBanner(false), 300)
   }
 
   const acceptNecessary = () => {
     localStorage.setItem('cookieConsent', 'necessary')
     localStorage.setItem('cookieConsentDate', new Date().toISOString())
-    setShowBanner(false)
-    // Tracking-Scripts NICHT laden
+    setIsAnimating(false)
+    setTimeout(() => setShowBanner(false), 300)
   }
 
   if (!showBanner) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white shadow-2xl z-50">
-      <div className="max-w-7xl mx-auto p-6">
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex-1">
-              <h3 className="text-lg font-bold mb-2">🍪 Cookie-Einstellungen</h3>
-              <p className="text-sm text-gray-300 mb-3">
-                Wir verwenden technisch notwendige Cookies zur Funktion der Website (z.B. Speicherung Ihrer Cookie-Präferenz).
-                Optional können Sie uns erlauben, Analyse-Cookies zu verwenden, um die Website zu verbessern.{' '}
-                <button
-                  onClick={() => setShowDetails(!showDetails)}
-                  className="text-gold hover:text-gold-light underline"
-                >
-                  {showDetails ? 'Weniger anzeigen' : 'Mehr erfahren'}
-                </button>
-              </p>
-              <Link
-                href="/datenschutz"
-                className="text-sm text-gold hover:text-gold-light underline"
-              >
-                Zur Datenschutzerklärung →
-              </Link>
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300 ${
+        isAnimating ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent'
+      }`}
+    >
+      {/* Modal */}
+      <div
+        className={`bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto transition-all duration-300 ${
+          isAnimating ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        }`}
+      >
+        <div className="p-6 sm:p-8">
+          {/* Header */}
+          <div className="text-center mb-6">
+            <div className="w-16 h-16 bg-cream rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-3xl">🍪</span>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-              <button
-                onClick={acceptNecessary}
-                className="px-6 py-3 border-2 border-white rounded-lg hover:bg-white hover:text-gray-900 transition font-semibold"
-              >
-                Nur Notwendige
-              </button>
-              <button
-                onClick={acceptAll}
-                className="px-6 py-3 bg-burgundy rounded-lg hover:bg-burgundy-dark transition font-semibold"
-              >
-                Alle akzeptieren
-              </button>
-            </div>
+            <h3 className="text-2xl font-bold text-gray-900">Cookie-Einstellungen</h3>
           </div>
 
+          {/* Content */}
+          <p className="text-gray-600 text-center mb-4">
+            Wir verwenden technisch notwendige Cookies zur Funktion der Website
+            (z.B. Speicherung Ihrer Cookie-Präferenz).
+          </p>
+
+          <div className="flex justify-center gap-4 mb-6">
+            <button
+              onClick={() => setShowDetails(!showDetails)}
+              className="text-sm text-burgundy hover:text-burgundy-dark underline transition-colors"
+            >
+              {showDetails ? 'Weniger anzeigen' : 'Mehr erfahren'}
+            </button>
+            <Link
+              href="/datenschutz"
+              className="text-sm text-burgundy hover:text-burgundy-dark underline transition-colors"
+            >
+              Datenschutz
+            </Link>
+          </div>
+
+          {/* Details (expandable) */}
           {showDetails && (
-            <div className="border-t border-gray-700 pt-4">
-              <h4 className="font-bold mb-3 text-white">Cookie-Details:</h4>
-
-              <div className="space-y-3 text-sm">
-                <div className="bg-gray-800 p-3 rounded-lg">
-                  <div className="flex items-start gap-2">
-                    <input type="checkbox" checked disabled className="mt-1" />
-                    <div className="flex-1">
-                      <p className="font-semibold text-white">Technisch notwendige Cookies (erforderlich)</p>
-                      <p className="text-gray-400 text-xs mt-1">
-                        <strong>Zweck:</strong> Speicherung Ihrer Cookie-Einwilligung<br />
-                        <strong>Name:</strong> cookieConsent, cookieConsentDate<br />
-                        <strong>Speicherort:</strong> localStorage (lokal im Browser)<br />
-                        <strong>Laufzeit:</strong> Unbegrenzt (bis zur manuellen Löschung)<br />
-                        <strong>Anbieter:</strong> Diese Website
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gray-800 p-3 rounded-lg">
-                  <div className="flex items-start gap-2">
-                    <input type="checkbox" className="mt-1" />
-                    <div className="flex-1">
-                      <p className="font-semibold text-white">Analyse-Cookies (optional)</p>
-                      <p className="text-gray-400 text-xs mt-1">
-                        <strong>Zweck:</strong> Verbesserung der Website durch Nutzungsanalyse<br />
-                        <strong>Status:</strong> Aktuell nicht aktiv<br />
-                        <strong>Hinweis:</strong> Derzeit werden keine Analyse-Tools verwendet
-                      </p>
-                    </div>
+            <div className="mb-6 space-y-3">
+              <div className="bg-gray-50 p-4 rounded-xl">
+                <div className="flex items-start gap-3">
+                  <input type="checkbox" checked disabled className="mt-1 accent-burgundy" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Technisch notwendige Cookies</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Speicherung Ihrer Cookie-Einwilligung im Browser (localStorage)
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <p className="text-xs text-gray-400 mt-4">
-                Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie die Cookie-Einstellungen
-                im Footer dieser Website aufrufen oder Ihren Browser-Cache löschen.
-              </p>
+              <div className="bg-gray-50 p-4 rounded-xl">
+                <div className="flex items-start gap-3">
+                  <input type="checkbox" disabled className="mt-1" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Analyse-Cookies</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Derzeit nicht aktiv
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={acceptNecessary}
+              className="flex-1 px-6 py-3 border-2 border-gray-300 rounded-xl text-gray-700 font-semibold hover:border-burgundy hover:text-burgundy transition-all duration-200"
+            >
+              Nur Notwendige
+            </button>
+            <button
+              onClick={acceptAll}
+              className="flex-1 px-6 py-3 bg-burgundy text-white rounded-xl font-semibold hover:bg-burgundy-dark transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              Alle akzeptieren
+            </button>
+          </div>
+
+          <p className="text-xs text-gray-400 text-center mt-4">
+            Sie können Ihre Einwilligung jederzeit im Footer widerrufen.
+          </p>
         </div>
       </div>
     </div>

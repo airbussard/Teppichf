@@ -167,14 +167,24 @@ export default function Datenschutz() {
             House, Barrow Street, Dublin 4, Irland.
           </p>
           <p className="mb-4">
+            <strong>2-Klick-Lösung:</strong> Google Maps wird auf unserer Website erst geladen, nachdem Sie aktiv
+            zugestimmt haben. Vor Ihrer Einwilligung werden keine Daten an Google übermittelt. Erst wenn Sie auf
+            „Karte laden" klicken, wird die Verbindung zu Google hergestellt und Ihre IP-Adresse an Google übertragen.
+          </p>
+          <p className="mb-4">
             Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese
             Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
             Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung.
           </p>
           <p className="mb-4">
-            Die Nutzung von Google Maps erfolgt im Interesse einer ansprechenden Darstellung unserer Online-
-            Angebote und an einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt
-            ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar.
+            <strong>Speicherung Ihrer Einwilligung:</strong> Ihre Einwilligung zur Nutzung von Google Maps wird in
+            Ihrem Browser (localStorage) gespeichert, sodass die Karte bei späteren Besuchen automatisch geladen
+            werden kann. Sie können diese Einwilligung jederzeit widerrufen, indem Sie die entsprechenden Daten
+            in Ihrem Browser löschen oder die Schaltfläche „Cookie-Einstellungen" im Footer unserer Website nutzen.
+          </p>
+          <p className="mb-4">
+            Die Nutzung von Google Maps erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.
+            Die Einwilligung ist freiwillig und kann jederzeit widerrufen werden.
           </p>
         </div>
       </div>

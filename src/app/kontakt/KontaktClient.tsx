@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function KontaktClient() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,20 @@ export default function KontaktClient() {
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [mapConsent, setMapConsent] = useState(false)
+
+  // Prüfe ob Maps-Consent bereits gegeben wurde
+  useEffect(() => {
+    const consent = localStorage.getItem('googleMapsConsent')
+    if (consent === 'true') {
+      setMapConsent(true)
+    }
+  }, [])
+
+  const loadMap = () => {
+    localStorage.setItem('googleMapsConsent', 'true')
+    setMapConsent(true)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -246,16 +261,46 @@ export default function KontaktClient() {
           </div>
         </div>
         <div className="w-full">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2555.4807644989843!2d8.665035315677!3d50.13789347942857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0931dd74cd71%3A0x8adb477aed6aa806!2sTeppichhaus%20am%20Dornbusch!5e0!3m2!1sde!2sde!4v1234567890123"
-            width="100%"
-            height="500"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Google Maps - Teppichhaus am Dornbusch Frankfurt"
-          ></iframe>
+          {mapConsent ? (
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2555.4807644989843!2d8.665035315677!3d50.13789347942857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0931dd74cd71%3A0x8adb477aed6aa806!2sTeppichhaus%20am%20Dornbusch!5e0!3m2!1sde!2sde!4v1234567890123"
+              width="100%"
+              height="500"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Google Maps - Teppichhaus am Dornbusch Frankfurt"
+            ></iframe>
+          ) : (
+            <div className="bg-cream h-[500px] flex flex-col items-center justify-center text-center px-6">
+              <div className="w-20 h-20 bg-burgundy/10 rounded-full flex items-center justify-center mb-6">
+                <svg className="w-10 h-10 text-burgundy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Google Maps</h3>
+              <p className="text-gray-600 max-w-md mb-4">
+                Mit dem Laden der Karte akzeptieren Sie die Datenschutzerklärung von Google.
+              </p>
+              <Link
+                href="/datenschutz"
+                className="text-sm text-burgundy hover:text-burgundy-dark underline mb-6"
+              >
+                Mehr erfahren
+              </Link>
+              <button
+                onClick={loadMap}
+                className="bg-burgundy text-white px-8 py-3 rounded-lg font-semibold hover:bg-burgundy-dark transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+                Karte laden
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </div>
