@@ -170,9 +170,9 @@ export default function Reviews() {
                     <Image
                       src={review.visitPhoto}
                       alt={`Besuch von ${review.name}`}
-                      width={400}
-                      height={300}
-                      className="object-cover w-full h-full"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      className="object-cover"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition flex items-center justify-center">
                       <svg className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
