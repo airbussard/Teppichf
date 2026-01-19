@@ -37,8 +37,8 @@ export default function LocalBusinessSchema() {
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "6"
+      "ratingValue": "4.86",
+      "reviewCount": "9"
     },
     "sameAs": [
       "https://www.google.com/maps/place/Teppichhaus+am+Dornbusch"
