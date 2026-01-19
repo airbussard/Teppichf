@@ -67,7 +67,7 @@ export default function Gallery() {
             <button
               key={index}
               onClick={() => openLightbox(image.src, image.alt)}
-              className="relative aspect-square rounded-lg overflow-hidden group cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2"
+              className="relative aspect-square rounded-lg overflow-hidden group cursor-pointer focus:outline-none focus:ring-2 focus:ring-burgundy focus:ring-offset-2"
             >
               <Image
                 src={image.src}

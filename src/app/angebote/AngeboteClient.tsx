@@ -115,12 +115,12 @@ export default function AngeboteClient() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-900 to-red-700 py-12 sm:py-16 lg:py-20">
+      <section className="bg-gradient-to-br from-burgundy via-burgundy-dark to-gray-900 py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Unsere Teppich-Angebote
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
             Entdecken Sie unsere handverlesene Auswahl an hochwertigen Orientteppichen und Perserteppichen
           </p>
         </div>
@@ -131,13 +131,13 @@ export default function AngeboteClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Sidebar Filters */}
-            <aside className="w-full lg:w-64 flex-shrink-0">
-              <div className="bg-white rounded-xl shadow-lg p-6 sticky top-4">
+            <aside className="w-full lg:w-72 flex-shrink-0">
+              <div className="bg-cream rounded-xl shadow-lg p-6 sticky top-24 border border-gold/20">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-xl font-bold text-gray-900">Filter</h3>
                   <button
                     onClick={resetFilters}
-                    className="text-sm text-red-700 hover:text-red-800"
+                    className="text-sm text-burgundy hover:text-burgundy-dark font-medium"
                   >
                     Zurücksetzen
                   </button>
@@ -153,7 +153,7 @@ export default function AngeboteClient() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Teppich suchen..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold bg-white transition-colors"
                   />
                 </div>
 
@@ -164,14 +164,14 @@ export default function AngeboteClient() {
                   </label>
                   <div className="space-y-2">
                     {availableHerkuenfte.map(herkunft => (
-                      <label key={herkunft} className="flex items-center">
+                      <label key={herkunft} className="flex items-center cursor-pointer group">
                         <input
                           type="checkbox"
                           checked={filters.herkunft.includes(herkunft)}
                           onChange={() => toggleHerkunft(herkunft)}
-                          className="rounded border-gray-300 text-red-700 focus:ring-red-700"
+                          className="w-4 h-4 rounded border-gray-300 text-burgundy focus:ring-gold"
                         />
-                        <span className="ml-2 text-sm text-gray-700">{herkunft}</span>
+                        <span className="ml-3 text-sm text-gray-700 group-hover:text-burgundy transition-colors">{herkunft}</span>
                       </label>
                     ))}
                   </div>
@@ -184,14 +184,14 @@ export default function AngeboteClient() {
                   </label>
                   <div className="space-y-2">
                     {availableMaterialien.map(material => (
-                      <label key={material} className="flex items-center">
+                      <label key={material} className="flex items-center cursor-pointer group">
                         <input
                           type="checkbox"
                           checked={filters.material.includes(material)}
                           onChange={() => toggleMaterial(material)}
-                          className="rounded border-gray-300 text-red-700 focus:ring-red-700"
+                          className="w-4 h-4 rounded border-gray-300 text-burgundy focus:ring-gold"
                         />
-                        <span className="ml-2 text-sm text-gray-700">{material}</span>
+                        <span className="ml-3 text-sm text-gray-700 group-hover:text-burgundy transition-colors">{material}</span>
                       </label>
                     ))}
                   </div>
@@ -200,7 +200,7 @@ export default function AngeboteClient() {
                 {/* Price Range Filter */}
                 <div className="mb-6">
                   <label className="block text-sm font-medium text-gray-700 mb-3">
-                    Preis: €{filters.minPreis} - €{filters.maxPreis}
+                    Preis: €{filters.minPreis.toLocaleString('de-DE')} - €{filters.maxPreis.toLocaleString('de-DE')}
                   </label>
                   <div className="space-y-3">
                     <input
@@ -210,7 +210,7 @@ export default function AngeboteClient() {
                       step="100"
                       value={filters.minPreis}
                       onChange={(e) => setFilters(prev => ({ ...prev, minPreis: parseInt(e.target.value) }))}
-                      className="w-full"
+                      className="w-full accent-gold"
                     />
                     <input
                       type="range"
@@ -219,19 +219,19 @@ export default function AngeboteClient() {
                       step="100"
                       value={filters.maxPreis}
                       onChange={(e) => setFilters(prev => ({ ...prev, maxPreis: parseInt(e.target.value) }))}
-                      className="w-full"
+                      className="w-full accent-gold"
                     />
                   </div>
                 </div>
 
                 {/* Contact Info */}
-                <div className="border-t border-gray-200 pt-6">
+                <div className="border-t border-gold/30 pt-6">
                   <p className="text-sm text-gray-600 mb-3">
                     Fragen zu unseren Teppichen?
                   </p>
                   <a
                     href="tel:069232581"
-                    className="block w-full bg-red-700 text-white text-center px-4 py-2 rounded-lg font-semibold hover:bg-red-800 transition"
+                    className="block w-full bg-burgundy text-white text-center px-4 py-3 rounded-lg font-semibold hover:bg-burgundy-dark transition-colors shadow-md"
                   >
                     069 - 232 581
                   </a>
@@ -252,7 +252,7 @@ export default function AngeboteClient() {
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as 'preis-asc' | 'preis-desc' | 'name')}
-                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
                   >
                     <option value="name">Name</option>
                     <option value="preis-asc">Preis aufsteigend</option>
@@ -263,7 +263,7 @@ export default function AngeboteClient() {
 
               {/* Product Grid */}
               {filteredTeppiche.length === 0 ? (
-                <div className="text-center py-12">
+                <div className="text-center py-12 bg-cream rounded-xl">
                   <p className="text-gray-600 text-lg">
                     Keine Teppiche gefunden. Bitte passen Sie Ihre Filter an.
                   </p>
@@ -274,20 +274,22 @@ export default function AngeboteClient() {
                     <Link
                       key={teppich.id}
                       href={`/angebote/${teppich.id}`}
-                      className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition"
+                      className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-gold/50"
                     >
-                      <div className="relative h-64 bg-gray-200">
+                      <div className="relative h-64 bg-gray-200 overflow-hidden">
                         <Image
                           src={teppich.bilder[0]}
                           alt={`${teppich.name} - Handgeknüpfter Orientteppich aus ${teppich.herkunft}`}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover group-hover:scale-105 transition duration-300"
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
                         />
+                        {/* Overlay bei Hover */}
+                        <div className="absolute inset-0 bg-burgundy/0 group-hover:bg-burgundy/10 transition-colors duration-300" />
                       </div>
 
                       <div className="p-6">
-                        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-700 transition">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-burgundy transition-colors">
                           {teppich.name}
                         </h3>
 
@@ -304,12 +306,15 @@ export default function AngeboteClient() {
                           </p>
                         </div>
 
-                        <div className="flex items-center justify-between">
-                          <span className="text-2xl font-bold text-red-700">
+                        <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+                          <span className="text-2xl font-bold text-gold-dark">
                             €{teppich.preis.toLocaleString('de-DE')}
                           </span>
-                          <span className="text-red-700 font-semibold group-hover:translate-x-1 transition">
-                            Details →
+                          <span className="inline-flex items-center text-burgundy font-semibold group-hover:translate-x-1 transition-transform duration-300">
+                            Details
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
                           </span>
                         </div>
                       </div>
@@ -334,13 +339,13 @@ export default function AngeboteClient() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:069232581"
-              className="inline-block bg-red-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-800 transition"
+              className="inline-block bg-burgundy text-white px-8 py-3 rounded-lg font-semibold hover:bg-burgundy-dark transition-all duration-300 shadow-md hover:shadow-lg"
             >
               069 - 232 581
             </a>
             <Link
               href="/kontakt"
-              className="inline-block bg-white text-red-700 border-2 border-red-700 px-8 py-3 rounded-lg font-semibold hover:bg-red-50 transition"
+              className="inline-block bg-white text-burgundy border-2 border-burgundy px-8 py-3 rounded-lg font-semibold hover:bg-cream transition-all duration-300"
             >
               Kontakt aufnehmen
             </Link>

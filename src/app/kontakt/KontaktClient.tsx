@@ -52,7 +52,7 @@ export default function KontaktClient() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-900 to-red-700 py-12 sm:py-16 lg:py-20">
+      <section className="bg-gradient-to-br from-burgundy via-burgundy-dark to-gray-900 py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Kontakt
@@ -75,8 +75,8 @@ export default function KontaktClient() {
 
               <div className="space-y-6 mb-8">
                 <div className="flex items-start">
-                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-burgundy/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-burgundy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -89,17 +89,17 @@ export default function KontaktClient() {
                 </div>
 
                 <div className="flex items-start">
-                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-burgundy/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-burgundy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-bold text-gray-900 mb-1">Telefon</h3>
-                    <a href="tel:069232581" className="text-red-700 hover:text-red-800 text-lg block">
+                    <a href="tel:069232581" className="text-burgundy hover:text-burgundy-dark text-lg block">
                       069 - 232 581
                     </a>
-                    <a href="tel:01729511370" className="text-red-700 hover:text-red-800 text-lg flex items-center gap-2 mt-1">
+                    <a href="tel:01729511370" className="text-burgundy hover:text-burgundy-dark text-lg flex items-center gap-2 mt-1">
                       0172 951 1370
                       <span className="text-sm text-gray-600">(WhatsApp)</span>
                     </a>
@@ -107,14 +107,14 @@ export default function KontaktClient() {
                 </div>
 
                 <div className="flex items-start">
-                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-burgundy/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-burgundy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-bold text-gray-900 mb-1">E-Mail</h3>
-                    <a href="mailto:info@teppich-frankfurt.de" className="text-red-700 hover:text-red-800">
+                    <a href="mailto:info@teppich-frankfurt.de" className="text-burgundy hover:text-burgundy-dark">
                       info@teppich-frankfurt.de
                     </a>
                   </div>
@@ -155,7 +155,7 @@ export default function KontaktClient() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
                     placeholder="Ihr Name"
                   />
                 </div>
@@ -171,7 +171,7 @@ export default function KontaktClient() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
                     placeholder="ihre@email.de"
                   />
                 </div>
@@ -186,7 +186,7 @@ export default function KontaktClient() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
                     placeholder="Ihre Telefonnummer (optional)"
                   />
                 </div>
@@ -202,7 +202,7 @@ export default function KontaktClient() {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent resize-none"
                     placeholder="Ihre Nachricht an uns..."
                   ></textarea>
                 </div>
@@ -222,7 +222,7 @@ export default function KontaktClient() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full bg-red-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-800 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  className="w-full bg-burgundy text-white px-8 py-4 rounded-lg font-semibold hover:bg-burgundy-dark transition disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
                   {status === 'loading' ? 'Wird gesendet...' : 'Nachricht senden'}
                 </button>

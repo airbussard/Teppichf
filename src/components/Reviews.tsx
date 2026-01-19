@@ -132,7 +132,7 @@ export default function Reviews() {
               <div className="flex items-center gap-4 mb-4">
                 {/* Avatar */}
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-red-700 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-burgundy rounded-full flex items-center justify-center">
                     <span className="text-white font-bold text-lg">
                       {review.initials}
                     </span>
@@ -193,7 +193,7 @@ export default function Reviews() {
             href="https://www.google.com/maps/place/Teppichhaus+am+Dornbusch/@50.1378935,8.6650353,17z/data=!3m1!4b1!4m6!3m5!1s0x47bd0931dd74cd71:0x8adb477aed6aa806!8m2!3d50.1378901!4d8.6676102!16s%2Fg%2F11cr_0wl21"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-red-700 hover:text-red-800 font-semibold"
+            className="inline-flex items-center gap-2 text-burgundy hover:text-burgundy-dark font-semibold"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>

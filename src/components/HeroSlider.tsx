@@ -65,28 +65,28 @@ export default function HeroSlider() {
             sizes="100vw"
           />
 
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+          {/* Premium Overlay - dramatischer Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
 
           {/* Content */}
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
             <div className="text-white max-w-2xl">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 animate-fade-in">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 animate-fade-in leading-tight">
                 {slide.title}
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 animate-fade-in-delay">
+              <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-10 animate-fade-in-delay text-white/90">
                 {slide.subtitle}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-delay-2">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 animate-fade-in-delay-2">
                 <Link
-                  href="/verkauf"
-                  className="bg-white text-red-700 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition text-center"
+                  href="/angebote"
+                  className="bg-gold hover:bg-gold-dark text-gray-900 px-8 sm:px-10 py-4 rounded-lg font-semibold transition-all duration-300 text-center text-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                 >
                   Teppiche ansehen
                 </Link>
                 <Link
                   href="/kontakt"
-                  className="border-2 border-white text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-700 transition text-center"
+                  className="border-2 border-white/80 text-white px-8 sm:px-10 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 text-center text-lg backdrop-blur-sm"
                 >
                   Kontakt aufnehmen
                 </Link>
@@ -116,14 +116,16 @@ export default function HeroSlider() {
         </svg>
       </button>
 
-      {/* Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      {/* Dots - mit Gold-Akzent */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition ${
-              index === currentSlide ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/75'
+            className={`h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide
+                ? 'bg-gold w-10'
+                : 'bg-white/50 hover:bg-white/75 w-3'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

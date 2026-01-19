@@ -37,7 +37,7 @@ export default function Impressum() {
           <p className="mb-4">
             Telefon: 069 - 232 581<br />
             Mobil: 0172 951 1370<br />
-            E-Mail: <a href="mailto:info@teppich-frankfurt.de" className="text-red-700 hover:text-red-800">info@teppich-frankfurt.de</a>
+            E-Mail: <a href="mailto:info@teppich-frankfurt.de" className="text-burgundy hover:text-burgundy-dark">info@teppich-frankfurt.de</a>
           </p>
 
           <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Vertretungsberechtigter:</h3>
@@ -60,7 +60,7 @@ export default function Impressum() {
           <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">EU-Streitschlichtung</h2>
           <p className="mb-4">
             Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
-            <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" className="text-red-700 hover:text-red-800 ml-1">
+            <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" className="text-burgundy hover:text-burgundy-dark ml-1">
               https://ec.europa.eu/consumers/odr/
             </a>.<br />
             Unsere E-Mail-Adresse finden Sie oben im Impressum.
@@ -117,10 +117,10 @@ export default function Impressum() {
           <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Webdesign & Entwicklung</h2>
           <p className="mb-4">
             Diese Website wurde mit ❤️ entwickelt und konzipiert von:<br />
-            <a href="https://getemergence.com" target="_blank" rel="noopener noreferrer" className="text-red-700 hover:text-red-800">
+            <a href="https://getemergence.com" target="_blank" rel="noopener noreferrer" className="text-burgundy hover:text-burgundy-dark">
               getemergence.com
             </a><br />
-            Webadresse: <a href="https://getemergence.com" target="_blank" rel="noopener noreferrer" className="text-red-700 hover:text-red-800">
+            Webadresse: <a href="https://getemergence.com" target="_blank" rel="noopener noreferrer" className="text-burgundy hover:text-burgundy-dark">
               getemergence.com
             </a>
           </p>

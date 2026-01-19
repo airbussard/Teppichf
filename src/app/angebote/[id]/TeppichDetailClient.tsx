@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Teppich } from '@/types/teppich'
@@ -11,6 +11,7 @@ interface TeppichDetailClientProps {
 
 export default function TeppichDetailClient({ teppich }: TeppichDetailClientProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,6 +20,30 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+
+  // ESC-Taste zum Schließen der Lightbox
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxOpen(false)
+    }
+    if (lightboxOpen) {
+      window.addEventListener('keydown', handleEsc)
+      document.body.style.overflow = 'hidden'
+    }
+    return () => {
+      window.removeEventListener('keydown', handleEsc)
+      document.body.style.overflow = 'unset'
+    }
+  }, [lightboxOpen])
+
+  // Navigation in Lightbox
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % teppich.bilder.length)
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + teppich.bilder.length) % teppich.bilder.length)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -59,7 +84,7 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
         setStatus('error')
         setErrorMessage(data.error || 'Ein Fehler ist aufgetreten')
       }
-    } catch (error) {
+    } catch {
       setStatus('error')
       setErrorMessage('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.')
     }
@@ -67,34 +92,109 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
 
   return (
     <div>
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center animate-fadeIn"
+          onClick={() => setLightboxOpen(false)}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-4 right-4 text-white/80 hover:text-white p-2 z-10"
+            aria-label="Schließen"
+          >
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Navigation Arrows */}
+          {teppich.bilder.length > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition z-10"
+                aria-label="Vorheriges Bild"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition z-10"
+                aria-label="Nächstes Bild"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </>
+          )}
+
+          {/* Lightbox Image */}
+          <div
+            className="relative w-full h-full max-w-5xl max-h-[85vh] mx-4 animate-zoomIn"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={teppich.bilder[currentImageIndex]}
+              alt={`${teppich.name} - Bild ${currentImageIndex + 1}`}
+              fill
+              className="object-contain"
+              sizes="100vw"
+              priority
+            />
+          </div>
+
+          {/* Image Counter */}
+          {teppich.bilder.length > 1 && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">
+              {currentImageIndex + 1} / {teppich.bilder.length}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Breadcrumb */}
-      <div className="bg-gray-50 py-4">
+      <div className="bg-cream py-4 border-b border-gold/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center text-sm text-gray-600">
-            <Link href="/angebote" className="hover:text-red-700">
+            <Link href="/angebote" className="hover:text-burgundy transition-colors">
               Angebote
             </Link>
-            <span className="mx-2">›</span>
-            <span className="text-gray-900">{teppich.name}</span>
+            <span className="mx-2 text-gold">›</span>
+            <span className="text-gray-900 font-medium">{teppich.name}</span>
           </div>
         </div>
       </div>
 
       {/* Product Detail */}
-      <section className="py-12 sm:py-16 lg:py-20">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Image Gallery */}
             <div>
-              <div className="relative h-96 sm:h-[500px] bg-gray-200 rounded-xl overflow-hidden mb-4">
+              <div
+                className="relative h-96 sm:h-[500px] bg-gray-100 rounded-xl overflow-hidden mb-4 cursor-zoom-in group shadow-lg"
+                onClick={() => setLightboxOpen(true)}
+              >
                 <Image
                   src={teppich.bilder[currentImageIndex]}
                   alt={`${teppich.name} - Handgeknüpfter Orientteppich aus ${teppich.herkunft}`}
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                {/* Zoom Indicator */}
+                <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1.5 rounded-full text-sm flex items-center gap-2 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  </svg>
+                  Vergrößern
+                </div>
               </div>
 
               {teppich.bilder.length > 1 && (
@@ -103,10 +203,10 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
-                      className={`relative h-20 rounded-lg overflow-hidden border-2 transition ${
+                      className={`relative h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                         currentImageIndex === index
-                          ? 'border-red-700'
-                          : 'border-gray-200 hover:border-gray-300'
+                          ? 'border-gold ring-2 ring-gold/30'
+                          : 'border-gray-200 hover:border-gold/50'
                       }`}
                     >
                       <Image
@@ -128,38 +228,38 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
                 {teppich.name}
               </h1>
 
-              <div className="text-3xl font-bold text-red-700 mb-6">
+              <div className="text-3xl font-bold text-gold-dark mb-6">
                 €{teppich.preis.toLocaleString('de-DE')}
               </div>
 
-              <div className="bg-gray-50 rounded-xl p-6 mb-6">
+              <div className="bg-cream rounded-xl p-6 mb-6 border border-gold/20">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Produktdetails</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Herkunft</p>
+                    <p className="text-sm text-gray-500 mb-1">Herkunft</p>
                     <p className="font-semibold text-gray-900">
                       {teppich.herkunft}
                       {teppich.region && ` (${teppich.region})`}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Größe</p>
+                    <p className="text-sm text-gray-500 mb-1">Größe</p>
                     <p className="font-semibold text-gray-900">{teppich.groesse}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Alter</p>
+                    <p className="text-sm text-gray-500 mb-1">Alter</p>
                     <p className="font-semibold text-gray-900">{teppich.alter}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Zustand</p>
+                    <p className="text-sm text-gray-500 mb-1">Zustand</p>
                     <p className="font-semibold text-gray-900">{teppich.zustand}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Material</p>
+                    <p className="text-sm text-gray-500 mb-1">Material</p>
                     <p className="font-semibold text-gray-900">{teppich.material}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Knüpfung</p>
+                    <p className="text-sm text-gray-500 mb-1">Knüpfung</p>
                     <p className="font-semibold text-gray-900">{teppich.knuepfung}</p>
                   </div>
                 </div>
@@ -171,8 +271,13 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
               </div>
 
               {teppich.besonderheiten && (
-                <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">Besonderheiten</h3>
+                <div className="bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/30 rounded-xl p-4 mb-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Besonderheiten
+                  </h3>
                   <p className="text-gray-700">{teppich.besonderheiten}</p>
                 </div>
               )}
@@ -181,7 +286,7 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
               <div className="border-t border-gray-200 pt-6">
                 <a
                   href="tel:069232581"
-                  className="w-full bg-red-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-800 transition flex items-center justify-center gap-2 mb-3"
+                  className="w-full bg-burgundy text-white px-8 py-4 rounded-lg font-semibold hover:bg-burgundy-dark transition-all duration-300 flex items-center justify-center gap-2 mb-3 shadow-lg hover:shadow-xl"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -197,7 +302,7 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
 
           {/* Inquiry Form */}
           <div className="mt-16 max-w-3xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg p-8">
+            <div className="bg-cream rounded-xl shadow-lg p-8 border border-gold/20">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
                 Anfrage zu diesem Teppich
               </h2>
@@ -214,7 +319,7 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold bg-white transition-colors"
                     placeholder="Ihr Name"
                   />
                 </div>
@@ -230,7 +335,7 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold bg-white transition-colors"
                     placeholder="ihre@email.de"
                   />
                 </div>
@@ -245,7 +350,7 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold bg-white transition-colors"
                     placeholder="Ihre Telefonnummer (optional)"
                   />
                 </div>
@@ -261,7 +366,7 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold bg-white transition-colors resize-none"
                     placeholder="Ihre Nachricht..."
                   ></textarea>
                 </div>
@@ -281,7 +386,7 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full bg-red-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-800 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  className="w-full bg-gold hover:bg-gold-dark text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
                 >
                   {status === 'loading' ? 'Wird gesendet...' : 'Anfrage senden'}
                 </button>
@@ -297,7 +402,7 @@ export default function TeppichDetailClient({ teppich }: TeppichDetailClientProp
           <div className="mt-12 text-center">
             <Link
               href="/angebote"
-              className="inline-flex items-center text-red-700 hover:text-red-800 font-semibold"
+              className="inline-flex items-center text-burgundy hover:text-burgundy-dark font-semibold transition-colors"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />

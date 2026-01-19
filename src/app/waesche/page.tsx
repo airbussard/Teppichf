@@ -24,12 +24,12 @@ export default function Waesche() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-900 to-red-700 py-12 sm:py-16 lg:py-20">
+      <section className="bg-gradient-to-br from-burgundy via-burgundy-dark to-gray-900 py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Teppichwäsche
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
             Professionelle und schonende Reinigung mit kostenlosem Hol- und Bringservice
           </p>
         </div>
@@ -73,9 +73,9 @@ export default function Waesche() {
 
           {/* Services */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-gray-50 rounded-xl p-8">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-cream rounded-xl p-8 border border-gold/20">
+              <div className="w-16 h-16 bg-gradient-to-br from-burgundy to-burgundy-dark rounded-full flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
@@ -85,9 +85,9 @@ export default function Waesche() {
               </p>
             </div>
 
-            <div className="bg-gray-50 rounded-xl p-8">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-cream rounded-xl p-8 border border-gold/20">
+              <div className="w-16 h-16 bg-gradient-to-br from-burgundy to-burgundy-dark rounded-full flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                 </svg>
               </div>
@@ -97,9 +97,9 @@ export default function Waesche() {
               </p>
             </div>
 
-            <div className="bg-gray-50 rounded-xl p-8">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-cream rounded-xl p-8 border border-gold/20">
+              <div className="w-16 h-16 bg-gradient-to-br from-burgundy to-burgundy-dark rounded-full flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
               </div>
@@ -111,13 +111,13 @@ export default function Waesche() {
           </div>
 
           {/* Process */}
-          <div className="bg-gray-50 rounded-xl p-8 mb-16">
+          <div className="bg-cream rounded-xl p-8 mb-16 border border-gold/20">
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
               Unser Reinigungsprozess
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="w-12 h-12 bg-red-700 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-burgundy to-burgundy-dark text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">
                   1
                 </div>
                 <h4 className="font-bold mb-2">Prüfung</h4>
@@ -125,7 +125,7 @@ export default function Waesche() {
               </div>
 
               <div className="text-center">
-                <div className="w-12 h-12 bg-red-700 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-burgundy to-burgundy-dark text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">
                   2
                 </div>
                 <h4 className="font-bold mb-2">Vorreinigung</h4>
@@ -133,7 +133,7 @@ export default function Waesche() {
               </div>
 
               <div className="text-center">
-                <div className="w-12 h-12 bg-red-700 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-burgundy to-burgundy-dark text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">
                   3
                 </div>
                 <h4 className="font-bold mb-2">Hauptwäsche</h4>
@@ -141,7 +141,7 @@ export default function Waesche() {
               </div>
 
               <div className="text-center">
-                <div className="w-12 h-12 bg-red-700 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-burgundy to-burgundy-dark text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">
                   4
                 </div>
                 <h4 className="font-bold mb-2">Trocknung</h4>
@@ -153,7 +153,7 @@ export default function Waesche() {
           {/* Benefits */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             <div className="flex items-start">
-              <svg className="w-8 h-8 text-red-700 mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-gold mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <div>
@@ -163,7 +163,7 @@ export default function Waesche() {
             </div>
 
             <div className="flex items-start">
-              <svg className="w-8 h-8 text-red-700 mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-gold mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <div>
@@ -173,7 +173,7 @@ export default function Waesche() {
             </div>
 
             <div className="flex items-start">
-              <svg className="w-8 h-8 text-red-700 mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-gold mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <div>
@@ -183,7 +183,7 @@ export default function Waesche() {
             </div>
 
             <div className="flex items-start">
-              <svg className="w-8 h-8 text-red-700 mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-gold mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <div>
@@ -194,7 +194,7 @@ export default function Waesche() {
           </div>
 
           {/* CTA */}
-          <div className="bg-red-50 rounded-xl p-8 text-center">
+          <div className="bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/30 rounded-xl p-8 text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Lassen Sie Ihren Teppich professionell reinigen
             </h3>
@@ -204,13 +204,13 @@ export default function Waesche() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:069232581"
-                className="inline-block bg-red-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-800 transition"
+                className="inline-block bg-burgundy text-white px-8 py-3 rounded-lg font-semibold hover:bg-burgundy-dark transition-all duration-300 shadow-md hover:shadow-lg"
               >
                 069 - 232 581
               </a>
               <Link
                 href="/kontakt"
-                className="inline-block border-2 border-red-700 text-red-700 px-8 py-3 rounded-lg font-semibold hover:bg-red-700 hover:text-white transition"
+                className="inline-block border-2 border-burgundy text-burgundy px-8 py-3 rounded-lg font-semibold hover:bg-burgundy hover:text-white transition-all duration-300"
               >
                 Kontaktformular
               </Link>

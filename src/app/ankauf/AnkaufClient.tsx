@@ -113,7 +113,7 @@ export default function AnkaufClient() {
         setStatus('error')
         setErrorMessage(data.error || 'Ein Fehler ist aufgetreten')
       }
-    } catch (error) {
+    } catch {
       setStatus('error')
       setErrorMessage('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.')
     }
@@ -122,12 +122,12 @@ export default function AnkaufClient() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-900 to-red-700 py-12 sm:py-16 lg:py-20">
+      <section className="bg-gradient-to-br from-burgundy via-burgundy-dark to-gray-900 py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Teppichankauf
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
             Wir kaufen Ihre Orientteppiche und Perserteppiche zu fairen Preisen an
           </p>
         </div>
@@ -153,29 +153,29 @@ export default function AnkaufClient() {
               </p>
             </div>
 
-            <div className="bg-gray-50 rounded-xl p-8">
+            <div className="bg-cream rounded-xl p-8 border border-gold/20">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Wir kaufen an:</h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
-                  <svg className="w-6 h-6 text-red-700 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-6 h-6 text-gold mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="text-gray-700">Perserteppiche aller Art</span>
                 </li>
                 <li className="flex items-start">
-                  <svg className="w-6 h-6 text-red-700 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-6 h-6 text-gold mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="text-gray-700">Orientteppiche aus verschiedenen Regionen</span>
                 </li>
                 <li className="flex items-start">
-                  <svg className="w-6 h-6 text-red-700 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-6 h-6 text-gold mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="text-gray-700">Antike und moderne Teppiche</span>
                 </li>
                 <li className="flex items-start">
-                  <svg className="w-6 h-6 text-red-700 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-6 h-6 text-gold mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="text-gray-700">Nachlässe und Sammlungen</span>
@@ -191,7 +191,7 @@ export default function AnkaufClient() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="w-16 h-16 bg-red-700 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-burgundy to-burgundy-dark text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   1
                 </div>
                 <h3 className="text-xl font-bold mb-2">Kontakt</h3>
@@ -201,7 +201,7 @@ export default function AnkaufClient() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-red-700 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-burgundy to-burgundy-dark text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   2
                 </div>
                 <h3 className="text-xl font-bold mb-2">Begutachtung</h3>
@@ -211,7 +211,7 @@ export default function AnkaufClient() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-red-700 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-burgundy to-burgundy-dark text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   3
                 </div>
                 <h3 className="text-xl font-bold mb-2">Angebot</h3>
@@ -221,7 +221,7 @@ export default function AnkaufClient() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-red-700 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-burgundy to-burgundy-dark text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   4
                 </div>
                 <h3 className="text-xl font-bold mb-2">Abwicklung</h3>
@@ -237,7 +237,7 @@ export default function AnkaufClient() {
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
               Senden Sie uns Fotos Ihrer Teppiche
             </h2>
-            <div className="max-w-3xl mx-auto bg-gray-50 rounded-xl p-8">
+            <div className="max-w-3xl mx-auto bg-cream rounded-xl p-8 border border-gold/20">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
@@ -251,7 +251,7 @@ export default function AnkaufClient() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold bg-white transition-colors"
                       placeholder="Ihr Name"
                     />
                   </div>
@@ -267,7 +267,7 @@ export default function AnkaufClient() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold bg-white transition-colors"
                       placeholder="ihre@email.de"
                     />
                   </div>
@@ -283,7 +283,7 @@ export default function AnkaufClient() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold bg-white transition-colors"
                     placeholder="Ihre Telefonnummer (optional)"
                   />
                 </div>
@@ -299,7 +299,7 @@ export default function AnkaufClient() {
                     onChange={handleChange}
                     required
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold bg-white transition-colors resize-none"
                     placeholder="Größe, Herkunft, Zustand, Alter etc..."
                   ></textarea>
                 </div>
@@ -314,10 +314,10 @@ export default function AnkaufClient() {
                     onDragLeave={handleDragLeave}
                     onDrop={handleDrop}
                     onClick={() => fileInputRef.current?.click()}
-                    className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition ${
+                    className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition bg-white ${
                       isDragging
-                        ? 'border-red-700 bg-red-50'
-                        : 'border-gray-300 hover:border-red-700 hover:bg-gray-100'
+                        ? 'border-gold bg-gold/5'
+                        : 'border-gray-300 hover:border-gold hover:bg-gray-50'
                     }`}
                   >
                     <svg
@@ -334,7 +334,7 @@ export default function AnkaufClient() {
                       />
                     </svg>
                     <p className="mt-2 text-sm text-gray-600">
-                      <span className="font-semibold text-red-700">Klicken zum Hochladen</span> oder
+                      <span className="font-semibold text-burgundy">Klicken zum Hochladen</span> oder
                       Dateien hierher ziehen
                     </p>
                     <p className="mt-1 text-xs text-gray-500">
@@ -367,7 +367,7 @@ export default function AnkaufClient() {
                         <button
                           type="button"
                           onClick={() => removeImage(index)}
-                          className="absolute -top-2 -right-2 bg-red-700 text-white rounded-full p-1 hover:bg-red-800 transition"
+                          className="absolute -top-2 -right-2 bg-burgundy text-white rounded-full p-1 hover:bg-burgundy-dark transition"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path
@@ -398,7 +398,7 @@ export default function AnkaufClient() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full bg-red-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-800 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  className="w-full bg-gold hover:bg-gold-dark text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
                 >
                   {status === 'loading' ? 'Wird gesendet...' : 'Anfrage senden'}
                 </button>
@@ -411,7 +411,7 @@ export default function AnkaufClient() {
           </div>
 
           {/* Contact Info Banner */}
-          <div className="bg-red-50 rounded-xl p-8 text-center">
+          <div className="bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/30 rounded-xl p-8 text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Möchten Sie uns Ihre Teppiche verkaufen?
             </h3>
@@ -420,7 +420,7 @@ export default function AnkaufClient() {
             </p>
             <a
               href="tel:069232581"
-              className="inline-block bg-red-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-800 transition text-xl"
+              className="inline-block bg-burgundy text-white px-8 py-3 rounded-lg font-semibold hover:bg-burgundy-dark transition-all duration-300 text-xl shadow-md hover:shadow-lg"
             >
               069 - 232 581
             </a>

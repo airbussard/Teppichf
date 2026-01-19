@@ -77,7 +77,7 @@ export default function ImageCompare({
           className="object-cover"
           priority
         />
-        <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 bg-red-600 text-white px-2 sm:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-base font-semibold">
+        <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 bg-burgundy text-white px-2 sm:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-base font-semibold">
           {beforeLabel}
         </div>
       </div>

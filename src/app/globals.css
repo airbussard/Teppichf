@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* Premium-Farbpalette für Teppichhaus */
+@theme {
+  --color-gold: #C9A962;
+  --color-gold-light: #D4B978;
+  --color-gold-dark: #A88B4A;
+  --color-cream: #FDF5E6;
+  --color-cream-dark: #F5ECD8;
+  --color-burgundy: #722F37;
+  --color-burgundy-light: #8B3A44;
+  --color-burgundy-dark: #5A252C;
+
+  /* Font-Familie für Headings */
+  --font-family-serif: var(--font-playfair), ui-serif, Georgia, Cambria, serif;
+  --font-family-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
@@ -8,12 +24,24 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-start-rgb));
+  font-family: var(--font-family-sans);
+}
+
+/* Premium Serif-Typografie für Überschriften */
+h1, h2, h3 {
+  font-family: var(--font-family-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+/* Utility-Klasse für Serif-Text */
+.font-serif {
+  font-family: var(--font-family-serif);
 }
 
 /* Hero Slider Animations */

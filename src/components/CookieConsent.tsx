@@ -43,14 +43,14 @@ export default function CookieConsent() {
                 Optional können Sie uns erlauben, Analyse-Cookies zu verwenden, um die Website zu verbessern.{' '}
                 <button
                   onClick={() => setShowDetails(!showDetails)}
-                  className="text-red-400 hover:text-red-300 underline"
+                  className="text-gold hover:text-gold-light underline"
                 >
                   {showDetails ? 'Weniger anzeigen' : 'Mehr erfahren'}
                 </button>
               </p>
               <Link
                 href="/datenschutz"
-                className="text-sm text-red-400 hover:text-red-300 underline"
+                className="text-sm text-gold hover:text-gold-light underline"
               >
                 Zur Datenschutzerklärung →
               </Link>
@@ -64,7 +64,7 @@ export default function CookieConsent() {
               </button>
               <button
                 onClick={acceptAll}
-                className="px-6 py-3 bg-red-700 rounded-lg hover:bg-red-800 transition font-semibold"
+                className="px-6 py-3 bg-burgundy rounded-lg hover:bg-burgundy-dark transition font-semibold"
               >
                 Alle akzeptieren
               </button>
